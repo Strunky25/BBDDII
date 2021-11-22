@@ -1,0 +1,23 @@
+.register-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5vh;
+}
+
+input {
+  width: 350px;
+}
+
+.login {
+  padding-top: 5vh;
+}
