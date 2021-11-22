@@ -1,0 +1,29 @@
+<div class="login-container">
+  <h2>Overwatch 2</h2>
+  <form (ngSubmit)="loginUser()" #formLogin="ngForm">
+    <mat-form-field>
+      <mat-label>Nom d'usuari</mat-label>
+      <input
+        matInput
+        name="nom"
+        placeholder="Ex. pepToni17"
+        [(ngModel)]="nom"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Contrassenya</mat-label>
+      <input
+        matInput
+        name="contrassenya"
+        type="password"
+        [(ngModel)]="contrassenya"
+      />
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">
+      Iniciar sessió
+    </button>
+  </form>
+  <span class="register"
+    >No tens compte? <a routerLink="/register">Registra't</a></span
+  >
+</div>
