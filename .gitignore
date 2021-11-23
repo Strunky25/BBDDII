@@ -1,4 +1,3 @@
 client/node_modules
 client/.angular
-*.json
-!spec/*.json
+client/*.json
