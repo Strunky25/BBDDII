@@ -11,9 +11,25 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
 import { MainComponent } from './components/main/main.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { HeaderComponent } from './components/header/header.component';
+import { TabBarComponent } from './components/tab-bar/tab-bar.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { ShowCardsComponent } from './components/show-cards/show-cards.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, RegisterComponent, MainComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    MainComponent,
+    HeaderComponent,
+    TabBarComponent,
+    ShowCardsComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -22,7 +38,12 @@ import { MainComponent } from './components/main/main.component';
     MatFormFieldModule,
     MatButtonModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatTabsModule,
+    MatButtonToggleModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

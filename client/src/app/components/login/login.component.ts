@@ -16,12 +16,7 @@ export class LoginComponent {
 
   loginUser(): void {
     this.authService
-      .loginUser({
-        nom: this.nom,
-        contrassenya: this.contrassenya,
-      } as Usuari)
-      .subscribe((res) => {
-        if (res) this.router.navigate(['main']);
-      });
+      .loginUser()
+      .subscribe(() => this.router.navigate(['main']));
   }
 }

@@ -1,19 +1,38 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Usuari } from 'src/app/models/usuari';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  private user: Usuari | undefined;
 
-  public registerUser(user: Usuari): Observable<any> {
-    return this.http.post('http://localhost/public/servidor/register.php', user);
+  constructor(/*private http: HttpClient*/) {}
+
+  public registerUser(): Observable<any> {
+    return new Observable<any>((subscriber) => {
+      subscriber.next(1);
+      subscriber.complete();
+    });
+    // return this.http.post('http://localhost/public/servidor/register.php', user);
   }
 
-  public loginUser(user: Usuari): Observable<any> {
-    return this.http.get(`http://localhost/public/servidor/login.php?nom=${user.nom}&contrassenya=${user.contrassenya}`);
+  public loginUser(): Observable<any> {
+    this.user = {
+      nom: 'Dawid',
+      llinatges: 'Roch Dawid',
+      contrassenya: 'blabla',
+      nomUsuari: 'ddawidroch1',
+    } as Usuari;
+    return new Observable<any>((subscriber) => {
+      subscriber.next(1);
+      subscriber.complete();
+    });
+    // return this.http.get(`http://localhost/public/servidor/login.php?nom=${user.nom}&contrassenya=${user.contrassenya}`);
+  }
+
+  public getCurrentUser(): Usuari | undefined {
+    return this.user;
   }
 }

@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Usuari } from 'src/app/models/usuari';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  styleUrls: ['./main.component.css'],
 })
-export class MainComponent implements OnInit {
+export class MainComponent {
+  public user: Usuari | undefined;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private auth: AuthService) {
+    this.user = this.auth.getCurrentUser();
   }
-
 }

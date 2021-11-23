@@ -1,4 +1,9 @@
+import { Contracte } from './contracte';
+
 export interface Usuari {
-  nom: String;
+  nomUsuari: String;
   contrassenya: String;
+  nom: String;
+  llinatges: String;
+  contracte?: Contracte;
 }

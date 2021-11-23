@@ -16,12 +16,7 @@ export class RegisterComponent {
 
   registerUser(): void {
     this.authService
-      .registerUser({
-        nom: this.nom,
-        contrassenya: this.contrassenya,
-      } as Usuari)
-      .subscribe(() => {
-        this.router.navigate(['']);
-      });
+      .registerUser()
+      .subscribe(() => this.router.navigate(['']));
   }
 }
