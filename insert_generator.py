@@ -1,4 +1,4 @@
-    from faker import Faker
+from faker import Faker
 import random as rand
 # url
 import json
@@ -50,8 +50,8 @@ def generar_urls(file):
     API_KEY = 'your_key'
     random = ''.join(rand.choice(string.ascii_uppercase + string.digits) for _ in range(3))
 
-    urlData = "https://www.googleapis.com/youtube/v3/search?key={}&maxResults={}&part=snippet&type=video&q={}".format(
-        API_KEY, count, random)
+    urlData = "https://www.googleapis.com/youtube/v3/search?key={}&maxResults={}&part=snippet&type=video&q={}"
+    urlData = urlData.format(API_KEY, count, random)
     webURL = urllib.request.urlopen(urlData)
     data = webURL.read()
     encoding = webURL.info().get_content_charset('utf-8')
@@ -61,10 +61,9 @@ def generar_urls(file):
         videoId = (data['id']['videoId'])
         print(videoId)
 
-
 def generar_contracte(file):
     for i in range(int(NOMBRE_USUARIS/3)):
-        
+        pass
 
 
 def generar_contingut(file):
