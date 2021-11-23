@@ -68,7 +68,7 @@ def generar_contingut(file):
 
 
 def main():
-    with open('inserts.txt', "w") as f:
+    with open('/data/inserts.txt', "w") as f:
         faker = Faker('es_ES')
         #generar_constants(file, faker)
         generar_usuaris(f, faker)
