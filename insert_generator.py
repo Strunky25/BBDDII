@@ -17,6 +17,12 @@ usuaris = list()
 def generar_constants(file, faker):
     insert_constants = INSERT.replace("tabla", "tipusUsuari")
     insert_constants = insert_constants.replace("columnas", "tipusUsuari")
+    insert_constants = insert_constants.replace(";","(\'menor\'),(\'adolescent\'),(\'adult\');")
+    file.write(insert_constants)
+    insert_constants = INSERT.replace("tabla", "tipusContracte")
+    insert_constants = insert_constants.replace("columnas","tipus, preu")
+    insert_constants = insert_constants.replace(";","(\'mensual\',15),(\'trimestral\',40);")
+    file.write(insert_constants)
 
 
 def generar_usuaris(file, faker):
@@ -25,7 +31,6 @@ def generar_usuaris(file, faker):
         "columnas", "nomUsuari, contrasenya, nom,llinatges, tipusUsuari")
 
     for i in range(NOMBRE_USUARIS):
-        faker.unique
         usuario = faker.user_name()
         while usuario in usuaris:  # Nos aseguramos de que los usuarios sean unicos
             usuario = faker.user_name()
