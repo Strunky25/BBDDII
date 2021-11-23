@@ -1,4 +1,4 @@
-from faker import Faker
+    from faker import Faker
 import random as rand
 # url
 import json
@@ -7,22 +7,22 @@ import string
 
 
 INSERT = "INSERT INTO tabla (columnas) VALUES ;"
-NOMBRE_USUARIS = 10
-NUM_TIPUS_USUARIS = 3
+NOMBRE_USUARIS = 300
 TIPUS_USUARIS = ['Menor', 'Adolescent', 'Adult']
+TIPUS_CONTRACTE = ['Mensual', 'Trimestral']
 
 usuaris = list()
 
 
-def generar_constants(file, faker):
-    insert_constants = INSERT.replace("tabla", "tipusUsuari")
-    insert_constants = insert_constants.replace("columnas", "tipusUsuari")
-    insert_constants = insert_constants.replace(";","(\'menor\'),(\'adolescent\'),(\'adult\');")
-    file.write(insert_constants)
-    insert_constants = INSERT.replace("tabla", "tipusContracte")
-    insert_constants = insert_constants.replace("columnas","tipus, preu")
-    insert_constants = insert_constants.replace(";","(\'mensual\',15),(\'trimestral\',40);")
-    file.write(insert_constants)
+def generar_constants(file):
+    insert_tipus_usuari = INSERT.replace("tabla", "tipusUsuari")
+    insert_tipus_usuari = insert_tipus_usuari.replace("columnas", "tipusUsuari")
+    insert_tipus_usuari = insert_tipus_usuari.replace(";","(\'menor\'),(\'adolescent\'),(\'adult\');")
+    file.write(insert_tipus_usuari +"\n")
+    insert_tipus_contracte = INSERT.replace("tabla", "tipusContracte")
+    insert_tipus_contracte = insert_tipus_contracte.replace("columnas","tipus, preu")
+    insert_tipus_contracte = insert_tipus_contracte.replace(";","(\'mensual\',15),(\'trimestral\',40);")
+    file.write(insert_tipus_contracte + "\n")
 
 
 def generar_usuaris(file, faker):
@@ -48,8 +48,7 @@ def generar_usuaris(file, faker):
 def generar_urls(file):
     count = 50
     API_KEY = 'your_key'
-    random = ''.join(rand.choice(string.ascii_uppercase + string.digits)
-                     for _ in range(3))
+    random = ''.join(rand.choice(string.ascii_uppercase + string.digits) for _ in range(3))
 
     urlData = "https://www.googleapis.com/youtube/v3/search?key={}&maxResults={}&part=snippet&type=video&q={}".format(
         API_KEY, count, random)
@@ -64,8 +63,8 @@ def generar_urls(file):
 
 
 def generar_contracte(file):
-    for i in range(rand.nextInt(NOMBRE_USUARIS)):
-        pass
+    for i in range(int(NOMBRE_USUARIS/3)):
+        
 
 
 def generar_contingut(file):
@@ -73,9 +72,9 @@ def generar_contingut(file):
 
 
 def main():
-    with open('/data/inserts.txt', "w") as f:
+    with open('data/inserts.txt', "w") as f:
         faker = Faker('es_ES')
-        #generar_constants(file, faker)
+        generar_constants(f)
         generar_usuaris(f, faker)
 
 
