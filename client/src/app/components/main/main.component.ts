@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class MainComponent {
   public user: Usuari | undefined;
+  public teContracte: boolean = false;
 
   constructor(private auth: AuthService) {
     this.user = this.auth.getCurrentUser();

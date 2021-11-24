@@ -23,42 +23,6 @@ export class ContingutsService {
           categoria: { nom: 'Entreteniment' },
           tipusUsuaris: [{ tipus: 'Adult' }],
         } as Contingut,
-        {
-          titol: 'EL GIGANTE NOBLE LO HA VUELTO A HACER',
-          url: 'https://youtu.be/SN3saeWHMIw',
-          categoria: { nom: 'Entreteniment' },
-          tipusUsuaris: [{ tipus: 'Adult' }],
-        } as Contingut,
-        {
-          titol: 'EL GIGANTE NOBLE LO HA VUELTO A HACER',
-          url: 'https://youtu.be/SN3saeWHMIw',
-          categoria: { nom: 'Entreteniment' },
-          tipusUsuaris: [{ tipus: 'Adult' }],
-        } as Contingut,
-        {
-          titol: 'EL GIGANTE NOBLE LO HA VUELTO A HACER',
-          url: 'https://youtu.be/SN3saeWHMIw',
-          categoria: { nom: 'Entreteniment' },
-          tipusUsuaris: [{ tipus: 'Adult' }],
-        } as Contingut,
-        {
-          titol: 'EL GIGANTE NOBLE LO HA VUELTO A HACER',
-          url: 'https://youtu.be/SN3saeWHMIw',
-          categoria: { nom: 'Entreteniment' },
-          tipusUsuaris: [{ tipus: 'Adult' }],
-        } as Contingut,
-        {
-          titol: 'EL GIGANTE NOBLE LO HA VUELTO A HACER',
-          url: 'https://youtu.be/SN3saeWHMIw',
-          categoria: { nom: 'Entreteniment' },
-          tipusUsuaris: [{ tipus: 'Adult' }],
-        } as Contingut,
-        {
-          titol: 'EL GIGANTE NOBLE LO HA VUELTO A HACER',
-          url: 'https://youtu.be/SN3saeWHMIw',
-          categoria: { nom: 'Entreteniment' },
-          tipusUsuaris: [{ tipus: 'Adult' }],
-        } as Contingut,
       ]);
       subscriber.complete();
     });

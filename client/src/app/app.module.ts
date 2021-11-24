@@ -19,6 +19,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ShowCardsComponent } from './components/show-cards/show-cards.component';
 import { MatCardModule } from '@angular/material/card';
+import { AltaContracteComponent } from './components/alta-contracte/alta-contracte.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormContracteComponent } from './components/form-contracte/form-contracte.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,8 @@ import { MatCardModule } from '@angular/material/card';
     HeaderComponent,
     TabBarComponent,
     ShowCardsComponent,
+    AltaContracteComponent,
+    FormContracteComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +50,8 @@ import { MatCardModule } from '@angular/material/card';
     MatTabsModule,
     MatButtonToggleModule,
     MatCardModule,
+    MatDialogModule,
+    MatRadioModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,2 +1,3 @@
 <app-header></app-header>
-<app-tab-bar></app-tab-bar>
+<app-tab-bar *ngIf="teContracte; else altaContracte"></app-tab-bar>
+<ng-template #altaContracte><app-alta-contracte></app-alta-contracte></ng-template>
