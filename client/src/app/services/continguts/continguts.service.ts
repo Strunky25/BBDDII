@@ -17,6 +17,13 @@ export class ContingutsService {
           categoria: { nom: 'Entreteniment' },
           tipusUsuaris: [{ tipus: 'Adult' }],
         } as Contingut,
+      ]);
+    });
+  }
+
+  obtenirContingutsFavorits(): Observable<Array<Contingut>> {
+    return new Observable((subscriber) => {
+      subscriber.next([
         {
           titol: 'EL GIGANTE NOBLE LO HA VUELTO A HACER',
           url: 'https://youtu.be/SN3saeWHMIw',
@@ -24,7 +31,19 @@ export class ContingutsService {
           tipusUsuaris: [{ tipus: 'Adult' }],
         } as Contingut,
       ]);
-      subscriber.complete();
+    });
+  }
+
+  obtenirContingutsCategoriesFavorites(): Observable<Array<Contingut>> {
+    return new Observable((subscriber) => {
+      subscriber.next([
+        {
+          titol: 'EL GIGANTE NOBLE LO HA VUELTO A HACER',
+          url: 'https://youtu.be/SN3saeWHMIw',
+          categoria: { nom: 'Entreteniment' },
+          tipusUsuaris: [{ tipus: 'Adult' }],
+        } as Contingut,
+      ]);
     });
   }
 }

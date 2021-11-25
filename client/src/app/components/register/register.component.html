@@ -2,12 +2,30 @@
   <h2>Overwatch 2</h2>
   <form (ngSubmit)="registerUser()" #formRegistre="ngForm">
     <mat-form-field>
-      <mat-label>Nom d'usuari</mat-label>
+      <mat-label>Nom</mat-label>
       <input
         matInput
         name="nom"
-        placeholder="Ex. pepToni17"
+        placeholder="Ex. Pep Toni"
         [(ngModel)]="nom"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Llinatges</mat-label>
+      <input
+        matInput
+        name="llinatges"
+        placeholder="Ex. Martínez Suau"
+        [(ngModel)]="llinatges"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Nom d'usuari</mat-label>
+      <input
+        matInput
+        name="nomUsuari"
+        placeholder="Ex. pepToni17"
+        [(ngModel)]="nomUsuari"
       />
     </mat-form-field>
     <mat-form-field>

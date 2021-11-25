@@ -1,16 +1,23 @@
-<form (ngSubmit)="crearContracte()">
+<form>
+  <h2>Nou contracte</h2>
   <mat-form-field appearance="fill">
     <mat-label>Data d'alta</mat-label>
-    <input matInput name="dataAlta" [(ngModel)]="dataAlta" type="date" />
+    <input required matInput name="dataAlta" [(ngModel)]="dataAlta" type="date" />
   </mat-form-field>
-  <label>Tipus</label>
-  <mat-radio-group name="tipusContracte" [(ngModel)]="tipusContracte">
-    <mat-radio-button [value]="{ tipus: 'mensual', preu: 25 }">
-      Mensual
+  <mat-radio-group
+    name="tipusContracte"
+    class="radio-group"
+    [(ngModel)]="tipusContracte"
+  >
+    <label class="label-tipus">Tipus</label>
+    <mat-radio-button checked="mensual" [value]="'mensual'" class="radio">
+      Mensual (15€)
     </mat-radio-button>
-    <mat-radio-button [value]="{ tipus: 'trimestral', preu: 60 }">
-      Trimestral
+    <mat-radio-button [value]="'trimestral'" class="radio">
+      Trimestral (40€)
     </mat-radio-button>
   </mat-radio-group>
-  <button mat-button mat-dialog-close type="submit">Crear contracte</button>
+  <button mat-raised-button [mat-dialog-close]="{dataAlta, tipusContracte}" type="submit" color="primary">
+    Crear contracte
+  </button>
 </form>

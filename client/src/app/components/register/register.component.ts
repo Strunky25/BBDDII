@@ -9,14 +9,21 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  public nom: String = '';
-  public contrassenya: String = '';
+  nomUsuari: String = '';
+  contrassenya: String = '';
+  nom: String = '';
+  llinatges: String = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   registerUser(): void {
     this.authService
-      .registerUser()
+      .registerUser({
+        nomUsuari: this.nomUsuari,
+        contrassenya: this.contrassenya,
+        nom: this.nom,
+        llinatges: this.llinatges,
+      } as Usuari)
       .subscribe(() => this.router.navigate(['']));
   }
 }

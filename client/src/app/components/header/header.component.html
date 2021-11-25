@@ -1,12 +1,20 @@
-<header>
-  <mat-toolbar color="primary" class="toolbar">
-    <button
-      mat-icon-button
-      class="example-icon"
-      aria-label="Example icon-button with menu icon"
-    >
-      <mat-icon>menu</mat-icon>
-    </button>
-    <h1>Overwatch 2</h1>
-  </mat-toolbar>
-</header>
+<mat-toolbar color="primary" class="header">
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <h1>Overwatch 2</h1>
+</mat-toolbar>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>description</mat-icon>
+    <span>Contractes</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>category</mat-icon>
+    <span>Categories favorites</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>assistant</mat-icon>
+    <span>Recomanacions</span>
+  </button>
+</mat-menu>

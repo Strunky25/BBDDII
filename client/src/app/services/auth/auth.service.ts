@@ -6,33 +6,33 @@ import { Usuari } from 'src/app/models/usuari';
   providedIn: 'root',
 })
 export class AuthService {
-  private user: Usuari | undefined;
+  private user!: Usuari;
 
   constructor(/*private http: HttpClient*/) {}
 
-  public registerUser(): Observable<any> {
-    return new Observable<any>((subscriber) => {
-      subscriber.next(1);
+  public registerUser(user: Usuari): Observable<boolean> {
+    return new Observable<boolean>((subscriber) => {
+      subscriber.next(true);
       subscriber.complete();
     });
     // return this.http.post('http://localhost/public/servidor/register.php', user);
   }
 
-  public loginUser(): Observable<any> {
+  public loginUser(nomUsuari: String, pass: String): Observable<boolean> {
     this.user = {
-      nom: 'Dawid',
-      llinatges: 'Roch Dawid',
-      contrassenya: 'blabla',
-      nomUsuari: 'ddawidroch1',
+      nom: 'nom',
+      llinatges: 'llinatges',
+      contrassenya: pass,
+      nomUsuari: nomUsuari,
     } as Usuari;
-    return new Observable<any>((subscriber) => {
-      subscriber.next(1);
+    return new Observable<boolean>((subscriber) => {
+      subscriber.next(true);
       subscriber.complete();
     });
     // return this.http.get(`http://localhost/public/servidor/login.php?nom=${user.nom}&contrassenya=${user.contrassenya}`);
   }
 
-  public getCurrentUser(): Usuari | undefined {
+  public getCurrentUser(): Usuari {
     return this.user;
   }
 }

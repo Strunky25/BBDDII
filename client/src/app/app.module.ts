@@ -23,6 +23,7 @@ import { AltaContracteComponent } from './components/alta-contracte/alta-contrac
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormContracteComponent } from './components/form-contracte/form-contracte.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { MatRadioModule } from '@angular/material/radio';
     MatCardModule,
     MatDialogModule,
     MatRadioModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
