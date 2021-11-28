@@ -1,0 +1,10 @@
+<app-header></app-header>
+<div class="container">
+  <h1>Missatges</h1>
+  <mat-list class="list">
+    <mat-list-item *ngFor="let missatge of missatges">
+      {{ missatge }}
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+</div>

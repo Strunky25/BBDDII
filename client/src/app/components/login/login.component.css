@@ -6,6 +6,17 @@
   justify-content: center;
 }
 
+.login-subcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10vh;
+  border-radius: 50px;
+  background: linear-gradient(145deg, #cacaca, #f0f0f0);
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+}
+
 form {
   display: flex;
   flex-direction: column;

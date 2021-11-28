@@ -1,4 +1,4 @@
 export interface TipusContracte {
-  tipus: String;
+  tipus: string;
   preu: number;
 }

@@ -10,7 +10,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
-import { MainComponent } from './components/main/main.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderComponent } from './components/header/header.component';
@@ -24,18 +23,29 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormContracteComponent } from './components/form-contracte/form-contracte.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatBadgeModule } from '@angular/material/badge';
+import { ContractesComponent } from './components/contractes/contractes.component';
+import { ContingutsComponent } from './components/continguts/continguts.component';
+import { CategoriesFavoritesComponent } from './components/categories-favorites/categories-favorites.component';
+import { ContingutComponent } from './components/contingut/contingut.component';
+import { MatListModule } from '@angular/material/list';
+import { MissatgesComponent } from './components/missatges/missatges.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    MainComponent,
+    ContingutsComponent,
     HeaderComponent,
     TabBarComponent,
     ShowCardsComponent,
     AltaContracteComponent,
     FormContracteComponent,
+    ContractesComponent,
+    CategoriesFavoritesComponent,
+    ContingutComponent,
+    MissatgesComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +64,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatDialogModule,
     MatRadioModule,
     MatMenuModule,
+    MatBadgeModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

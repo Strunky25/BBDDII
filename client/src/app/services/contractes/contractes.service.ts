@@ -9,7 +9,7 @@ import { Usuari } from 'src/app/models/usuari';
   providedIn: 'root',
 })
 export class ContractesService {
-  public contractes: Array<Contracte> = [];
+  public contractes: Contracte[] = [];
 
   constructor(/*private http: HttpClient, private auth: AuthService*/) {}
 
@@ -21,7 +21,7 @@ export class ContractesService {
     // this.http.get("ddsdss", usuari);
   }
 
-  createContracte(contracte: Contracte): Observable<boolean> {
+  createContracte(contracte: Contracte, usuari: Usuari): Observable<boolean> {
     this.contractes.push(contracte);
     console.log(this.contractes);
     return new Observable((subscriber) => {
@@ -31,7 +31,8 @@ export class ContractesService {
     // this.http.post("ddsdss", {contracte, usuari});
   }
 
-  getContractes(): Observable<Array<Contracte>> {
+  getContractes(usuari: Usuari): Observable<Contracte[]> {
+    console.log(this.contractes);
     return new Observable((subscriber) => {
       subscriber.next(this.contractes);
       subscriber.complete();

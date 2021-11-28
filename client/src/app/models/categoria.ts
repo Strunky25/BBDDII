@@ -1,3 +1,3 @@
 export interface Categoria {
-    nom: String;
+    nom: string;
 }

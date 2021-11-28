@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './tab-bar.component.html',
   styleUrls: ['./tab-bar.component.css'],
 })
-export class TabBarComponent {
-  constructor() {}
-}
+export class TabBarComponent {}

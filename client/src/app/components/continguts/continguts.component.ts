@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { Usuari } from 'src/app/models/usuari';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ContractesService } from 'src/app/services/contractes/contractes.service';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css'],
+  selector: 'app-continguts',
+  templateUrl: './continguts.component.html',
+  styleUrls: ['./continguts.component.css'],
 })
-export class MainComponent implements OnInit {
+export class ContingutsComponent implements OnInit {
   hasContracte: boolean = false;
   private user!: Usuari;
 

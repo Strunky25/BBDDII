@@ -1,0 +1,13 @@
+<app-header></app-header>
+<div class="container">
+  <h1>Contractes</h1>
+  <mat-list class="list">
+    <mat-list-item *ngFor="let contracte of contractes">
+      <mat-icon mat-list-icon>description</mat-icon>
+      <div mat-line>
+        {{ contracte.tipus.tipus | titlecase }} ({{ contracte.tipus.preu }}€)
+      </div>
+      <div mat-line>{{ contracte.dataAlta }}</div>
+    </mat-list-item>
+  </mat-list>
+</div>

@@ -3,18 +3,21 @@
     <mat-icon>menu</mat-icon>
   </button>
   <h1>Overwatch 2</h1>
+  <button mat-icon-button (click)="navigateToMissatges()">
+    <mat-icon [matBadge]="nMissatges" matBadgeColor="warn">notifications</mat-icon>
+  </button>
 </mat-toolbar>
 <mat-menu #menu="matMenu">
-  <button mat-menu-item>
-    <mat-icon>description</mat-icon>
-    <span>Contractes</span>
-  </button>
-  <button mat-menu-item>
+  <a routerLink="/continguts" mat-menu-item>
+    <mat-icon>video_library</mat-icon>
+    <span>Continguts</span>
+  </a>
+  <a routerLink="/categoriesFavorites" mat-menu-item>
     <mat-icon>category</mat-icon>
     <span>Categories favorites</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>assistant</mat-icon>
-    <span>Recomanacions</span>
-  </button>
+  </a>
+  <a routerLink="/contractes" mat-menu-item>
+    <mat-icon>description</mat-icon>
+    <span>Contractes</span>
+  </a>
 </mat-menu>

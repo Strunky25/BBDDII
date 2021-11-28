@@ -1,7 +1,9 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Categoria } from 'src/app/models/categoria';
 import { Contingut } from 'src/app/models/contingut';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { ContingutsService } from 'src/app/services/continguts/continguts.service';
 
 @Component({
@@ -11,10 +13,10 @@ import { ContingutsService } from 'src/app/services/continguts/continguts.servic
 })
 export class ShowCardsComponent implements OnInit, OnDestroy {
   @Input() type = '';
-  public continguts: Array<Contingut> = [];
+  public continguts: Contingut[] = [];
   private subscription!: Subscription;
 
-  constructor(private cont: ContingutsService) {}
+  constructor(private cont: ContingutsService, private router: Router, private auth: AuthService) {}
 
   ngOnInit(): void {
     switch (this.type) {
@@ -25,23 +27,19 @@ export class ShowCardsComponent implements OnInit, OnDestroy {
         break;
       case 'contFav':
         this.subscription = this.cont
-          .obtenirContingutsFavorits()
+          .obtenirContingutsFavorits(this.auth.getCurrentUser())
           .subscribe((val) => (this.continguts = val));
         break;
       case 'catFav':
         this.subscription = this.cont
-          .obtenirContingutsCategoriesFavorites()
+          .obtenirContingutsCategoriesFavorites(this.auth.getCurrentUser())
           .subscribe((val) => (this.continguts = val));
         break;
     }
   }
 
-  afegirCatFav(categoria: Categoria): void {
-    console.log(categoria);
-  }
-
-  afegirContFav(contingut: Contingut): void {
-    console.log(contingut);
+  goToContingut(url: String) {
+    this.router.navigate(['/contingut'], { queryParams: { videoUrl: url } });
   }
 
   ngOnDestroy(): void {

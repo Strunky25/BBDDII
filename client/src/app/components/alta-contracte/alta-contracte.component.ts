@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TipusContracte } from 'src/app/models/tipus-contracte';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { ContractesService } from 'src/app/services/contractes/contractes.service';
 import { FormContracteComponent } from '../form-contracte/form-contracte.component';
 
@@ -12,7 +13,8 @@ import { FormContracteComponent } from '../form-contracte/form-contracte.compone
 export class AltaContracteComponent {
   constructor(
     public dialog: MatDialog,
-    private contractes: ContractesService
+    private contractes: ContractesService,
+    private auth: AuthService
   ) {}
 
   public openDialog(): void {
@@ -28,7 +30,7 @@ export class AltaContracteComponent {
             preu: val.tipusContracte === 'mensual' ? 15 : 40,
           } as TipusContracte,
           dataAlta: val.dataAlta,
-        });
+        }, this.auth.getCurrentUser());
       });
   }
 }

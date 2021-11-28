@@ -1,3 +1,3 @@
 export interface TipusUsuari {
-    tipus: String;
+    tipus: string;
 }

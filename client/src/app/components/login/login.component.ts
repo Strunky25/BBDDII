@@ -16,6 +16,6 @@ export class LoginComponent {
   loginUser(): void {
     this.authService
       .loginUser(this.nom, this.contrassenya)
-      .subscribe(() => this.router.navigate(['main']));
+      .subscribe(() => this.router.navigate(['continguts']));
   }
 }
