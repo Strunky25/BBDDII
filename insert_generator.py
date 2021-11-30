@@ -4,6 +4,7 @@ import random as rand
 import json
 import urllib.request
 import string
+import api
 
 
 INSERT = "INSERT INTO tabla (columnas) VALUES ;"
@@ -45,21 +46,24 @@ def generar_usuaris(file, faker):
     file.write(insert_usuaris)
 
 
-def generar_urls(file):
+def generar_urls():
     count = 50
-    API_KEY = 'your_key'
     random = ''.join(rand.choice(string.ascii_uppercase + string.digits) for _ in range(3))
 
     urlData = "https://www.googleapis.com/youtube/v3/search?key={}&maxResults={}&part=snippet&type=video&q={}"
-    urlData = urlData.format(API_KEY, count, random)
+    urlData = urlData.format(api.api_key, count, random)
     webURL = urllib.request.urlopen(urlData)
     data = webURL.read()
     encoding = webURL.info().get_content_charset('utf-8')
-    results = json.loads(data.decode(encoding))
-
-    for data in results['items']:
+    results = json.loads(data.decode(encoding)) 
+    
+    for data in results['items']: 
         videoId = (data['id']['videoId'])
-        print(videoId)
+        videoUrl="www.youtube.com/watch?v="+videoId
+        title=(data['snippet']['title'])
+        print(videoUrl)
+        print(title)
+        print("\n")
 
 def generar_contracte(file):
     for i in range(int(NOMBRE_USUARIS/3)):
@@ -71,10 +75,11 @@ def generar_contingut(file):
 
 
 def main():
-    with open('data/inserts.txt', "w") as f:
-        faker = Faker('es_ES')
-        generar_constants(f)
-        generar_usuaris(f, faker)
+    # with open('data/inserts.txt', "w") as f:
+    #     faker = Faker('es_ES')
+    #     generar_constants(f)
+    #     generar_usuaris(f, faker)
+    generar_urls()
 
 
 if __name__ == "__main__":
