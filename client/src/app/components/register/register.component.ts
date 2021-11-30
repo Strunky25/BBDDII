@@ -9,10 +9,10 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  nomUsuari: String = '';
-  contrassenya: String = '';
-  nom: String = '';
-  llinatges: String = '';
+  nomUsuari: string = '';
+  contrassenya: string = '';
+  nom: string = '';
+  llinatges: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -21,9 +21,10 @@ export class RegisterComponent {
       .registerUser({
         nomUsuari: this.nomUsuari,
         contrassenya: this.contrassenya,
-        nom: this.nom,
-        llinatges: this.llinatges,
-      } as Usuari)
-      .subscribe(() => this.router.navigate(['']));
+      })
+      .subscribe((val) => {
+        console.log(val);
+        this.router.navigate(['']);
+      });
   }
 }

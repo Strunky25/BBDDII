@@ -14,8 +14,11 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   loginUser(): void {
-    this.authService
-      .loginUser(this.nom, this.contrassenya)
-      .subscribe(() => this.router.navigate(['continguts']));
+    this.authService.loginUser(this.nom, this.contrassenya).subscribe((res) => {
+      if (res) {
+        console.log(res);
+        this.router.navigate(['continguts']);
+      }
+    });
   }
 }

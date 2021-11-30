@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Usuari } from 'src/app/models/usuari';
@@ -8,28 +9,14 @@ import { Usuari } from 'src/app/models/usuari';
 export class AuthService {
   private user!: Usuari;
 
-  constructor(/*private http: HttpClient*/) {}
+  constructor(private http: HttpClient) {}
 
-  public registerUser(user: Usuari): Observable<boolean> {
-    return new Observable<boolean>((subscriber) => {
-      subscriber.next(true);
-      subscriber.complete();
-    });
-    // return this.http.post('http://localhost/public/servidor/register.php', user);
+  public registerUser(user: Object): Observable<boolean> {
+    return this.http.post<boolean>('/public/servidor/register.php', user);
   }
 
-  public loginUser(nomUsuari: String, pass: String): Observable<boolean> {
-    this.user = {
-      nom: 'nom',
-      llinatges: 'llinatges',
-      contrassenya: pass,
-      nomUsuari: nomUsuari,
-    } as Usuari;
-    return new Observable<boolean>((subscriber) => {
-      subscriber.next(true);
-      subscriber.complete();
-    });
-    // return this.http.get(`http://localhost/public/servidor/login.php?nom=${user.nom}&contrassenya=${user.contrassenya}`);
+  public loginUser(nomUsuari: String, pass: String): Observable<any> {
+    return this.http.get<any>(`/public/servidor/login.php?nomUsuari=${nomUsuari}&contrassenya=${pass}`);
   }
 
   public getCurrentUser(): Usuari {
