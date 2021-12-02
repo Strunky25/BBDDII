@@ -1,0 +1,67 @@
+CREATE DATABASE BD202;
+
+CREATE TABLE TipusUsuari (
+	tipusUsuari VARCHAR(20) PRIMARY KEY
+};
+
+CREATE TABLE Usuari (
+	nomUsuari VARCHAR(20) PRIMARY KEY,
+	contrasenya VARCHAR(64) NOT NULL,
+	nom VARCHAR(30) NOT NULL,
+	llinatges VARCHAR(50) NOT NULL,
+	tipusUsuari VARCHAR(20) NOT NULL,
+	FOREIGN KEY (tipusUsuari) REFERENCES TipusUsuari (tipusUsuari)
+};
+
+CREATE TABLE TipusContracte (
+	tipusContracte VARCHAR(20) PRIMARY KEY,
+	preu SMALLMONEY NOT NULL
+};
+
+CREATE TABLE Contracte (
+	idContracte INT(20) PRIMARY KEY AUTOINCREMENT,
+	dataAlta DATE NOT NULL,
+	nomUsuari VARCHAR(20) NOT NULL,
+	tipusContracte VARCHAR(20) NOT NULL,
+	FOREIGN KEY (tipusContracte) REFERENCES TipusContracte (tipusContracte)
+};
+
+CREATE TABLE Categoria (
+	nomCategoria VARCHAR(20) PRIMARY KEY
+};
+
+CREATE TABLE Contingut (
+	idContingut INT(20) PRIMARY KEY AUTOINCREMENT,
+	titol VARCHAR(128) NOT NULL,
+	url VARCHAR(50) NOT NULL,
+	tipusUsuari VARCHAR(20) NOT NULL,
+	nomCategoria VARCHAR(20) NOT NULL,
+	FOREIGN KEY (tipusUsuari) REFERENCES TipusUsuari (tipusUsuari),
+	FOREIGN KEY (nomCategoria) REFERENCES Categoria (nomCategoria)
+};
+
+CREATE TABLE Missatge (
+	idMissatge INT(20) PRIMARY KEY AUTOINCREMENT,
+	dataGeneració DATE NOT NULL,
+	llegit BOOLEAN NOT NULL,
+	idContracte INT(20) NOT NULL,
+	idContingut INT(20) NOT NULL,
+	FOREIGN KEY (idContracte) REFERENCES Contracte (idContracte),
+	FOREIGN KEY (idContingut) REFERENCES Contingut (idContingut)
+};
+
+CREATE TABLE R_Contingut_Favorit (
+	idContracte INT(20) NOT NULL,
+	idContingut INT(20) NOT NULL,
+	FOREIGN KEY (idContracte) REFERENCES Contracte (idContracte),
+	FOREIGN KEY (idContingut) REFERENCES Contingut (idContingut),
+	PRIMARY KEY(idContracte, idContingut)
+};
+
+CREATE TABLE R_Categoria_Favorita (
+	idContracte INT(20) NOT NULL,
+	nomCategoria VARCHAR(20) NOT NULL,
+	FOREIGN KEY (idContracte) REFERENCES Contracte (idContracte),
+	FOREIGN KEY (nomCategoria) REFERENCES Categoria (nomCategoria),
+	PRIMARY KEY(idContracte, nomCategoria)
+};
