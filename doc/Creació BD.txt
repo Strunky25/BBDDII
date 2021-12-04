@@ -23,7 +23,8 @@ CREATE TABLE Contracte (
 	dataAlta DATE NOT NULL,
 	nomUsuari VARCHAR(20) NOT NULL,
 	tipusContracte VARCHAR(20) NOT NULL,
-	FOREIGN KEY (tipusContracte) REFERENCES TipusContracte (tipusContracte)
+	FOREIGN KEY (tipusContracte) REFERENCES TipusContracte (tipusContracte),
+	FOREIGN KEY (nomUsuari) REFERENCES Usuari (nomUsuari)
 };
 
 CREATE TABLE Categoria (
