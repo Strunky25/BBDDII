@@ -27,6 +27,14 @@ CREATE TABLE Contracte (
 	FOREIGN KEY (nomUsuari) REFERENCES Usuari (nomUsuari)
 );
 
+CREATE TABLE Factura ( 
+	idFactura INT(20) PRIMARY KEY AUTO_INCREMENT,
+	dataAlta DATE NOT NULL, 
+	llegit BOOLEAN NOT NULL,
+	idContracte INT(20) AUTO_INCREMENT,
+	FOREIGN KEY (idContracte) REFERENCES Contracte (idContracte)
+);
+
 CREATE TABLE Categoria (
 	nomCategoria VARCHAR(20) PRIMARY KEY
 );
