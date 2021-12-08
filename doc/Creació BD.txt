@@ -2,7 +2,7 @@ CREATE DATABASE BD202;
 
 CREATE TABLE TipusUsuari (
 	tipusUsuari VARCHAR(20) PRIMARY KEY
-};
+);
 
 CREATE TABLE Usuari (
 	nomUsuari VARCHAR(20) PRIMARY KEY,
@@ -11,43 +11,43 @@ CREATE TABLE Usuari (
 	llinatges VARCHAR(50) NOT NULL,
 	tipusUsuari VARCHAR(20) NOT NULL,
 	FOREIGN KEY (tipusUsuari) REFERENCES TipusUsuari (tipusUsuari)
-};
+);
 
 CREATE TABLE TipusContracte (
 	tipusContracte VARCHAR(20) PRIMARY KEY,
-	preu SMALLMONEY NOT NULL
-};
+	preu SMALLINT NOT NULL
+);
 
 CREATE TABLE Contracte (
-	idContracte INT(20) PRIMARY KEY AUTOINCREMENT,
+	idContracte INT(20) PRIMARY KEY AUTO_INCREMENT,
 	dataAlta DATE NOT NULL,
 	nomUsuari VARCHAR(20) NOT NULL,
 	tipusContracte VARCHAR(20) NOT NULL,
 	FOREIGN KEY (tipusContracte) REFERENCES TipusContracte (tipusContracte),
 	FOREIGN KEY (nomUsuari) REFERENCES Usuari (nomUsuari)
-};
+);
 
 CREATE TABLE Categoria (
 	nomCategoria VARCHAR(20) PRIMARY KEY
-};
+);
 
 CREATE TABLE Contingut (
-	idContingut INT(20) PRIMARY KEY AUTOINCREMENT,
+	idContingut INT(20) PRIMARY KEY AUTO_INCREMENT,
 	titol VARCHAR(128) NOT NULL,
 	url VARCHAR(50) NOT NULL,
 	nomCategoria VARCHAR(20) NOT NULL,
 	FOREIGN KEY (nomCategoria) REFERENCES Categoria (nomCategoria)
-};
+);
 
 CREATE TABLE Missatge (
-	idMissatge INT(20) PRIMARY KEY AUTOINCREMENT,
+	idMissatge INT(20) PRIMARY KEY AUTO_INCREMENT,
 	dataGeneració DATE NOT NULL,
 	llegit BOOLEAN NOT NULL,
 	idContracte INT(20) NOT NULL,
 	idContingut INT(20) NOT NULL,
 	FOREIGN KEY (idContracte) REFERENCES Contracte (idContracte),
 	FOREIGN KEY (idContingut) REFERENCES Contingut (idContingut)
-};
+);
 
 CREATE TABLE R_Contingut_Favorit (
 	idContracte INT(20) NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE R_Contingut_Favorit (
 	FOREIGN KEY (idContracte) REFERENCES Contracte (idContracte),
 	FOREIGN KEY (idContingut) REFERENCES Contingut (idContingut),
 	PRIMARY KEY(idContracte, idContingut)
-};
+);
 
 CREATE TABLE R_Categoria_Favorita (
 	idContracte INT(20) NOT NULL,
@@ -63,11 +63,11 @@ CREATE TABLE R_Categoria_Favorita (
 	FOREIGN KEY (idContracte) REFERENCES Contracte (idContracte),
 	FOREIGN KEY (nomCategoria) REFERENCES Categoria (nomCategoria),
 	PRIMARY KEY(idContracte, nomCategoria)
-};
+);
 
 CREATE TABLE R_Contingut_TipusContingut (
 	idContingut INT(20) NOT NULL,
 	tipusUsuari VARCHAR(20) NOT NULL,
 	FOREIGN KEY (idContingut) REFERENCES idContingut (Contingut),
 	FOREIGN KEY (tipusUsuari) REFERENCES TipusUsuari (tipusUsuari)
-};
+);
