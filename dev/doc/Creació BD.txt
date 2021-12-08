@@ -29,7 +29,7 @@ CREATE TABLE Contracte (
 
 CREATE TABLE Factura ( 
 	idFactura INT(20) PRIMARY KEY AUTO_INCREMENT,
-	dataAlta DATE NOT NULL, 
+	dataEmissio DATE NOT NULL, 
 	llegit BOOLEAN NOT NULL,
 	idContracte INT(20) AUTO_INCREMENT,
 	FOREIGN KEY (idContracte) REFERENCES Contracte (idContracte)
