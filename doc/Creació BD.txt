@@ -68,6 +68,6 @@ CREATE TABLE R_Categoria_Favorita (
 CREATE TABLE R_Contingut_TipusContingut (
 	idContingut INT(20) NOT NULL,
 	tipusUsuari VARCHAR(20) NOT NULL,
-	FOREIGN KEY (idContingut) REFERENCES idContingut (Contingut),
+	FOREIGN KEY (idContingut) REFERENCES Contingut (idContingut),
 	FOREIGN KEY (tipusUsuari) REFERENCES TipusUsuari (tipusUsuari)
 );
