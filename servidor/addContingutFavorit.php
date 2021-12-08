@@ -11,5 +11,6 @@ $conexio = mysqli_connect("localhost", "root", "") or die("Error conectant amb e
 $bd = mysqli_select_db($conexio, "bd202") or die("Error conectant amb la base de dades");
 $consulta = "INSERT INTO r_contingut_favorit VALUES ('".$idContracte."', '".$idContingut."')";
 $result = mysqli_query($conexio, $consulta);
+mysqli_close($conexio);
 
 echo json_encode($result);
