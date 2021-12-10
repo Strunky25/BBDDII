@@ -6,6 +6,7 @@ import urllib.request
 import string
 import api
 import datetime
+import hashlib
 
 print(Faker.date.between('2015-01-01', '2015-01-05'))
 
@@ -38,6 +39,8 @@ def generar_usuaris(file, faker):
     insert_usuaris = insert_usuaris.replace(
         "columnas", "nomUsuari, contrasenya, nom, llinatges, tipusUsuari")
     
+    usuari_contrassenya = ""
+    
     for i in range(NOMBRE_USUARIS):
         usuario = faker.user_name()
         while usuario in usuaris:  # Nos aseguramos de que los usuarios sean unicos
@@ -46,9 +49,13 @@ def generar_usuaris(file, faker):
         nombre = faker.first_name()
         apellido = faker.last_name()
         password = faker.password()
+        usuari_contrassenya += nombre + "\t" + password + "\n"
+        hashed_pass = hashlib.sha256(password.encode()).hexdigest()
         tip = TIPUS_USUARIS[rand.randint(0, 2)]
-        insert_usuaris = insert_usuaris.replace(";", f', (\'{usuario}\',\'{password}\',\'{nombre}\',\'{apellido}\',\'{tip}\');')
+        insert_usuaris = insert_usuaris.replace(";", f', (\'{usuario}\',\'{hashed_pass}\',\'{nombre}\',\'{apellido}\',\'{tip}\');')
     insert_usuaris = insert_usuaris.replace("VALUES ,", "VALUES ")
+    with open("contrassenyes.txt") as contras:
+        contras.write(usuari_contrassenya)
     file.write(insert_usuaris)
 
 def generar_categoria(file):
