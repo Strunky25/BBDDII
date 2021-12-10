@@ -3495,17 +3495,17 @@
 										"$ref": "AAAAAAF9fRT3d3Yhjvo="
 									},
 									"font": "Arial;13;0",
-									"left": 384,
-									"top": 463,
-									"width": 125.3916015625,
+									"left": 369,
+									"top": 455,
+									"width": 155.9619140625,
 									"height": 13,
-									"alpha": -4.331884327411445,
-									"distance": 5.385164807134504,
+									"alpha": -4.559740403434598,
+									"distance": 13.152946437965905,
 									"hostEdge": {
 										"$ref": "AAAAAAF9fRT3d3YlwAc="
 									},
 									"edgePosition": 1,
-									"text": "+R_Infantil_Contingut"
+									"text": "+R_Contingut_TipusUsuari"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -5219,7 +5219,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF9SIr54J/59t4="
 							},
-							"name": "R_Infantil_Contingut",
+							"name": "R_Contingut_TipusUsuari",
 							"end1": {
 								"_type": "UMLAssociationEnd",
 								"_id": "AAAAAAF9fRT3d3Yid/E=",
@@ -5855,7 +5855,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF9mra00BhlD1g="
 							},
-							"name": "data"
+							"name": "data",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5863,7 +5864,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF9mra00BhlD1g="
 							},
-							"name": "import"
+							"name": "import",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5871,7 +5873,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF9mra00BhlD1g="
 							},
-							"name": "llegit"
+							"name": "llegit",
+							"type": ""
 						}
 					]
 				}

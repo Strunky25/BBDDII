@@ -13,7 +13,7 @@ print(Faker.date.between('2015-01-01', '2015-01-05'))
 INSERT = "INSERT INTO tabla (columnas) VALUES ;"
 NOMBRE_USUARIS = 300
 NUM_VIDEOS = 1500
-TIPUS_USUARIS = ['Menor', 'Adolescent', 'Adult']
+TIPUS_USUARIS = ['Infantil', 'Adolescent', 'Adult'] #realment no empram s'array per res XD
 TIPUS_CONTRACTE = ['Mensual', 'Trimestral']
 CATEGORIES = ['Acción', 'Actualidad', 'Adulto', 'Aventuras', 'Animación', 'Anime', 'Binge', 'Biografía', 'Ciencia ficción', 'Comedia', 'Concurso', 'Corto', 'Crimen', 'Deporte', 'Documental', 
               'Drama', 'Estilo de vida', 'Familiar', 'Fantasía', 'Ficción', 'Guerra', 'Historia', 'Horror', 'Infantil', 'Juvenil', 'Música', 'Musical', 'Misterio', 'Programa de entrevistas', 'Reality Show',
@@ -26,7 +26,7 @@ usuaris = list()
 def generar_constants(file):
     insert_tipus_usuari = INSERT.replace("tabla", "tipusUsuari")
     insert_tipus_usuari = insert_tipus_usuari.replace("columnas", "tipusUsuari")
-    insert_tipus_usuari = insert_tipus_usuari.replace(";","(\'menor\'),(\'adolescent\'),(\'adult\');")
+    insert_tipus_usuari = insert_tipus_usuari.replace(";","(\'infantil\'),(\'adolescent\'),(\'adult\');")
     file.write(insert_tipus_usuari +"\n")
     insert_tipus_contracte = INSERT.replace("tabla", "tipusContracte")
     insert_tipus_contracte = insert_tipus_contracte.replace("columnas","tipus, preu")
