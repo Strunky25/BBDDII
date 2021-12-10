@@ -22,7 +22,6 @@ start_date = datetime.date(2015, 1, 1)
 end_date = datetime.date(2021, 12, 31)
 usuaris = list()
 
-#TipusUsuari i tipusContracte
 def generar_constants(file):
     insert_tipus_usuari = INSERT.replace("tabla", "tipusUsuari")
     insert_tipus_usuari = insert_tipus_usuari.replace("columnas", "tipusUsuari")
@@ -69,53 +68,22 @@ def generar_categoria(file):
 
 def generar_contingut(file):
     random = ''.join(rand.choice(string.ascii_uppercase + string.digits) for _ in range(3))
-    
     urlData = "https://www.googleapis.com/youtube/v3/search?key={}&maxResults={}&part=snippet&type=video&q={}"
-    urlData = urlData.format(api.api_key,NUM_VIDEOS, random)
     webURL = urllib.request.urlopen(urlData)
     data = webURL.read()
     encoding = webURL.info().get_content_charset('utf-8')
-    results = json.loads(data.decode(encoding)) 
-    
-    insert_usuaris = INSERT.replace("tabla", "Contingut")
-    insert_usuaris = insert_usuaris.replace(
-        "columnas", "titol, url, nomCategoria")
-    
-    for data in results['items']: 
         videoId = (data['id']['videoId'])
-        videoUrl="www.youtube.com/watch?v="+videoId
-        title=(data['snippet']['title'])
-        nomCategoria=rand.choice(CATEGORIES)
-        
-        insert_usuaris = insert_usuaris.replace(";", f', (\'{title}\',\'{videoUrl}\',\'{nomCategoria}\');')
-    insert_usuaris = insert_usuaris.replace("VALUES ,", "VALUES ")
-    file.write(insert_usuaris)
 
 def generar_contracte(file, faker):
-    insert_usuaris = INSERT.replace("tabla", "Contracte")
-    insert_usuaris = insert_usuaris.replace("columnas", "dataAlta, nomUsuari, tipusContracte")
-    
     for i in range(NOMBRE_USUARIS):
         time_between_dates = end_date - start_date
         days_between_dates = time_between_dates.days
         random_number_of_days = rand.randrange(days_between_dates)
         dataAlta = start_date + datetime.timedelta(days=random_number_of_days)
-        nomUsuari=usuaris(i)
-        tipusContracte=rand.choice(TIPUS_CONTRACTE)
-        insert_usuaris = insert_usuaris.replace(";", f', (\'{dataAlta}\',\'{nomUsuari}\',\'{tipusContracte}\');')
-    insert_usuaris = insert_usuaris.replace("VALUES ,", "VALUES ")
-    file.write(insert_usuaris)
 
 
 
 def main():
-    # with open('data/inserts.txt', "w") as f:
-    #     faker = Faker('es_ES')
-    #     generar_constants(f)
-    #     generar_usuaris(f, faker)
-    #     generar_categoria(f)
-    #     generar_contingut(f)
-    pass    
 
 
 if __name__ == "__main__":
