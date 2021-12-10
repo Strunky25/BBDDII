@@ -73,9 +73,10 @@ CREATE TABLE R_Categoria_Favorita (
 	PRIMARY KEY(idContracte, nomCategoria)
 );
 
-CREATE TABLE R_Contingut_TipusContingut (
+CREATE TABLE R_Contingut_TipusUsuari (
 	idContingut INT(20) NOT NULL,
 	tipusUsuari VARCHAR(20) NOT NULL,
 	FOREIGN KEY (idContingut) REFERENCES Contingut (idContingut),
-	FOREIGN KEY (tipusUsuari) REFERENCES TipusUsuari (tipusUsuari)
+	FOREIGN KEY (tipusUsuari) REFERENCES TipusUsuari (tipusUsuari),
+	PRIMARY KEY(idContingut, tipusUsuari)
 );
