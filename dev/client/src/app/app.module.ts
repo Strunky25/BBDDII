@@ -23,6 +23,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormContracteComponent } from './components/form-contracte/form-contracte.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 import { MatBadgeModule } from '@angular/material/badge';
 import { ContractesComponent } from './components/contractes/contractes.component';
 import { ContingutsComponent } from './components/continguts/continguts.component';
@@ -52,6 +53,7 @@ import { MissatgesComponent } from './components/missatges/missatges.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatInputModule,
+    MatSelectModule,
     MatFormFieldModule,
     MatButtonModule,
     HttpClientModule,

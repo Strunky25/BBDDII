@@ -11,7 +11,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  public registerUser(user: Object): Observable<boolean> {
+  public registerUser(user: Usuari): Observable<boolean> {
     return this.http.post<boolean>('/public/servidor/register.php', user);
   }
 

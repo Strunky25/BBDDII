@@ -5,5 +5,6 @@ export interface Usuari {
   contrassenya: string;
   nom: string;
   llinatges: string;
+  tipusUsuari: string;
   contracte?: Contracte;
 }

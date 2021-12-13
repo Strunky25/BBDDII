@@ -13,7 +13,7 @@ export class ContingutsService {
       titol: 'EL GIGANTE NOBLE LO HA VUELTO A HACER',
       url: 'https://youtu.be/SN3saeWHMIw',
       categoria: { nom: 'Entreteniment' },
-      tipusUsuaris: [{ tipus: 'Adult' }],
+      tipusUsuaris: ['Adult'],
     } as Contingut,
   ];
   constructor() {}

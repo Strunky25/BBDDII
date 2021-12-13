@@ -12,6 +12,24 @@
         />
       </mat-form-field>
       <mat-form-field>
+        <mat-label>Nom</mat-label>
+        <input
+          matInput
+          name="nom"
+          placeholder="Ex. Pep Toni"
+          [(ngModel)]="nom"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Llinatges</mat-label>
+        <input
+          matInput
+          name="llinatges"
+          placeholder="Ex. Munar"
+          [(ngModel)]="llinatges"
+        />
+      </mat-form-field>
+      <mat-form-field>
         <mat-label>Contrassenya</mat-label>
         <input
           matInput
@@ -19,6 +37,14 @@
           type="password"
           [(ngModel)]="contrassenya"
         />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Tipus d'usuari</mat-label>
+        <mat-select [(ngModel)]="tipusUsuari" name="tipusUsuari">
+          <mat-option *ngFor="let tipo of tipus" [value]="tipo">
+            {{tipo}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
       <button mat-raised-button color="primary" type="submit">
         Crear compte

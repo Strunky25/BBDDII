@@ -8,14 +8,14 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  public nom: String = '';
+  public nomUsuari: String = '';
   public contrassenya: String = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   loginUser(): void {
-    this.authService.loginUser(this.nom, this.contrassenya).subscribe((res) => {
-      if (res) {
+    this.authService.loginUser(this.nomUsuari, this.contrassenya).subscribe((res) => {
+      if (res.num_rows && res.num_rows > 0) {
         console.log(res);
         this.router.navigate(['continguts']);
       }
