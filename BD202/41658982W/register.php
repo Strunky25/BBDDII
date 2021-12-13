@@ -1,15 +1,16 @@
 <?php
 header("Access-Control-Allow-Origin: *");
-if (empty($_GET["nom"]) || empty($_GET["contrassenya"])) {
-    exit("Paràmetres invàlids");
-}
+$jsonData = json_decode(file_get_contents("php://input"));
+if (!$jsonData) {
+    exit("No hi ha dades");
+};
 
-$nomUsuari = $_GET["nomUsuari"];
-$pass = $_GET["contrassenya"];
+$nomUsuari = $jsonData->nomUsuari;
+$pass = $jsonData->password;
 $hashed_pass = hash("sha256",$pass);
-$nom = $_GET["nom"];
-$lli = $_GET["llinatges"];
-$tipus = $_GET["tipusUsuari"];
+$nom = $jsonData->nom;
+$lli = $jsonData->llinatges;
+$tipus = $jsonData->tipusUsuari;
 
 $conexio = mysqli_connect("localhost", "root", "") or die("Error conectant amb el servidor");
 $bd = mysqli_select_db($conexio, "bd202") or die("Error conectant amb la base de dades");
