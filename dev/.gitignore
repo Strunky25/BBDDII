@@ -1,4 +1,2 @@
 client/node_modules
-client/.angular
-client/*.json
 api.py
