@@ -10,7 +10,7 @@ import hashlib
 
 INSERT = "INSERT INTO tabla (columnas) VALUES ;"
 NOMBRE_USUARIS = 300
-NUM_VIDEOS = 1500
+NUM_VIDEOS = 150
 TIPUS_USUARIS = ['Infantil', 'Adolescent', 'Adult'] #realment no empram s'array per res XD
 TIPUS_CONTRACTE = ['Mensual', 'Trimestral']
 CATEGORIES = ['Acción', 'Actualidad', 'Adulto', 'Aventuras', 'Animación', 'Anime', 'Binge', 'Biografía', 'Ciencia ficción', 'Comedia', 'Concurso', 'Corto', 'Crimen', 'Deporte', 'Documental',
@@ -28,10 +28,8 @@ def generar_constants(file):
     insert_tipus_usuari = insert_tipus_usuari.replace("columnas", "tipusUsuari")
     insert_tipus_usuari = insert_tipus_usuari.replace(";","(\'infantil\'),(\'adolescent\'),(\'adult\');")
     file.write(insert_tipus_usuari +"\n")
-    insert_tipus_usuari = insert_tipus_usuari.replace(";", "(\'menor\'),(\'adolescent\'),(\'adult\');")
-    file.write(insert_tipus_usuari + "\n")
     insert_tipus_contracte = INSERT.replace("tabla", "tipusContracte")
-    insert_tipus_contracte = insert_tipus_contracte.replace("columnas", "tipus, preu")
+    insert_tipus_contracte = insert_tipus_contracte.replace("columnas", "tipusContracte, preu")
     insert_tipus_contracte = insert_tipus_contracte.replace(";", "(\'mensual\',15),(\'trimestral\',40);")
     file.write(insert_tipus_contracte + "\n")
 
@@ -54,14 +52,14 @@ def generar_usuaris(file, faker):
         nombre = faker.first_name()
         apellido = faker.last_name()
         password = faker.password()
-        usuari_contrassenya += nombre + "\t" + password + "\n"
+        usuari_contrassenya += usuario + "\t" + password + "\n"
         hashed_pass = hashlib.sha256(password.encode()).hexdigest()
         tip = TIPUS_USUARIS[rand.randint(0, 2)]
         insert_usuaris = insert_usuaris.replace(";", f', (\'{usuario}\',\'{hashed_pass}\',\'{nombre}\',\'{apellido}\',\'{tip}\');')
     insert_usuaris = insert_usuaris.replace("VALUES ,", "VALUES ")
     with open("contrassenyes.txt", "w") as contras:
         contras.write(usuari_contrassenya)
-    file.write(insert_usuaris)
+    file.write(insert_usuaris+ "\n")
 
 
 def generar_categoria(file):
@@ -71,32 +69,36 @@ def generar_categoria(file):
         nomCategoria = CATEGORIES[i]
         insert_categoria = insert_categoria.replace(";", f', (\'{nomCategoria}\');')
     insert_categoria = insert_categoria.replace("VALUES ,", "VALUES ")
-    file.write(insert_categoria)
+    file.write(insert_categoria+ "\n")
 
 
 def generar_contingut(file):
+    insert_contingut = INSERT.replace("tabla", "Contingut")
+    insert_contingut = insert_contingut.replace("columnas", "titol, url, nomCategoria")
+
+    insert_R_Contingut_TipusUsuari = INSERT.replace("tabla", "R_Contingut_TipusUsuari")
+    insert_R_Contingut_TipusUsuari = insert_R_Contingut_TipusUsuari.replace("columnas", "idContingut, tipusUsuari")
+
+    
     random = ''.join(rand.choice(string.ascii_uppercase + string.digits) for _ in range(3))
 
     urlData = "https://www.googleapis.com/youtube/v3/search?key={}&maxResults={}&part=snippet&type=video&q={}"
-    urlData = urlData.format(api.api_key, NUM_VIDEOS, random)
+    urlData = urlData.format(api.api_key, 150, random)
     webURL = urllib.request.urlopen(urlData)
     data = webURL.read()
     encoding = webURL.info().get_content_charset('utf-8')
     results = json.loads(data.decode(encoding))
 
-    insert_contingut = INSERT.replace("tabla", "Contingut")
-    insert_contingut = insert_contingut.replace("columnas", "titol, url, nomCategoria")
-
-    insert_R_Contingut_TipusUsuari = INSERT.replace("tabla", "R_Contingut_TipusContingut")
-    insert_R_Contingut_TipusUsuari = insert_R_Contingut_TipusUsuari.replace("columnas", "idContingut, tipusUsuari")
-
+    
     i = 1
     for data in results['items']:
         videoId = (data['id']['videoId'])
         videoUrl = "www.youtube.com/watch?v="+videoId
         title = (data['snippet']['title'])
         nomCategoria = rand.choice(CATEGORIES)
-
+        title=title.replace("\'","")
+        print(title)
+        print(i)
         insert_contingut = insert_contingut.replace(";", f', (\'{title}\',\'{videoUrl}\',\'{nomCategoria}\');')
 
         tipusUsuari = rand.choice(TIPUS_USUARIS)
@@ -104,8 +106,8 @@ def generar_contingut(file):
         i = i+1
     insert_contingut = insert_contingut.replace("VALUES ,", "VALUES ")
     insert_R_Contingut_TipusUsuari = insert_R_Contingut_TipusUsuari.replace("VALUES ,", "VALUES ")
-    file.write(insert_contingut)
-    file.write(insert_R_Contingut_TipusUsuari)
+    file.write(insert_contingut+ "\n")
+    file.write(insert_R_Contingut_TipusUsuari+ "\n")
 
 
 def generar_contracte(file):
@@ -121,36 +123,36 @@ def generar_contracte(file):
         tipusContracte = rand.choice(TIPUS_CONTRACTE)
         insert_contracte = insert_contracte.replace(";", f', (\'{dataAlta}\',\'{nomUsuari}\',\'{tipusContracte}\');')
     insert_contracte = insert_contracte.replace("VALUES ,", "VALUES ")
-    file.write(insert_contracte)
+    file.write(insert_contracte+ "\n")
 
 
 def generar_favorits(file):
     insert_R_Contingut_Favorit = INSERT.replace("tabla", "R_Contingut_Favorit")
     insert_R_Contingut_Favorit = insert_R_Contingut_Favorit.replace("columnas", "idContracte, idContingut")
 
-    insert_R_Categoria_Favorita = INSERT.replace("tabla", "R_Categoria_Favorit")
+    insert_R_Categoria_Favorita = INSERT.replace("tabla", "R_Categoria_Favorita")
     insert_R_Categoria_Favorita = insert_R_Categoria_Favorita.replace("columnas", "idContracte, nomCategoria")
 
     for i in range(1, NOMBRE_USUARIS-1):
-        videos = rand.sample(range(1, NUM_VIDEOS-1), 10)
+        videos = rand.sample(range(1, 50), 10)
         for j in range(10):
             video = videos[j]
             insert_R_Contingut_Favorit = insert_R_Contingut_Favorit.replace(";", f', (\'{i}\',\'{video}\');')
 
         categorias = rand.sample(range(1, len(CATEGORIES)-1), 5)
         for k in range(5):
-            categoria = categorias[k]
+            categoria = CATEGORIES[k]
             insert_R_Categoria_Favorita = insert_R_Categoria_Favorita.replace(";", f', (\'{i}\',\'{categoria}\');')
             
     insert_R_Contingut_Favorit = insert_R_Contingut_Favorit.replace("VALUES ,", "VALUES")
     insert_R_Categoria_Favorita = insert_R_Categoria_Favorita.replace("VALUES ,", "VALUES")
 
-    file.write(insert_R_Contingut_Favorit)
-    file.write(insert_R_Categoria_Favorita)
+    file.write(insert_R_Contingut_Favorit+ "\n")
+    file.write(insert_R_Categoria_Favorita+ "\n")
 
 
 def main():
-    with open('dev/data/prova.txt', "w", encoding="utf-8") as f:
+    with open('c:/Users/walli/OneDrive/Escritorio/UIB/3/bd/BBDDII/dev/data/prova.txt', "w", encoding="utf-8") as f:
         faker = Faker('es_ES')
         generar_constants(f)
         generar_usuaris(f, faker)
