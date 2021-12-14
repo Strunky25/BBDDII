@@ -1,14 +1,14 @@
 <?php
 header("Access-Control-Allow-Origin: *");
-if (empty($_GET["nomUsuari"])) {
+if (empty($_GET["idMissatge"])) {
     exit("Paràmetres invàlids");
 }
 
-$nomUsuari = $_GET["nomUsuari"];
+$idMissatge = $_GET["idMissatge"];
 
 $conexio = mysqli_connect("localhost", "root", "") or die("Error conectant amb el servidor");
 $bd = mysqli_select_db($conexio, "bd202") or die("Error conectant amb la base de dades");
-$consulta = "SELECT * FROM Missatge WHERE Missatge.llegit IS FALSE JOIN Contracte ON Missatge.idContracte = Contracte.idContracte AND contracte.nomUsuari = '$nomUsuari' JOIN R_Categoria_Favorita  ON Contracte.idContracte = R_Categoria_Favorita.idContracte";
+$consulta = "UPDATE Missatge SET llegit = TRUE WHERE idMissatge = $idMissatge";
 
 $result = mysqli_query($conexio, $consulta);
 if ($result != false && mysqli_num_rows($result) > 0) {
