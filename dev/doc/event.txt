@@ -1,0 +1,17 @@
+SET GLOBAL event_scheduler = ON;
+
+DELIMITER //
+CREATE EVENT creacio_factura 
+	ON SCHEDULE EVERY 1 DAY STARTS CURRENT_TIMESTAMP
+	DO BEGIN
+		INSERT INTO Factura (dataEmissio, llegit, idContracte)
+			SELECT CURRENT_DATE, FALSE, Contracte.idContracte 
+            	FROM Contracte WHERE Contracte.dataVenciment = CURRENT_DATE;	
+           
+		UPDATE Contracte 
+			SET Contracte.dataVenciment =  
+        		IF(Contracte.dataVenciment = CURRENT_DATE AND contracte.tipusContracte = 'Mensual',  DATE_ADD(CURRENT_DATE, INTERVAL 1 MONTH), Contracte.dataVenciment),
+		Contracte.dataVenciment =  
+        	IF(Contracte.dataVenciment = CURRENT_DATE AND contracte.tipusContracte = 'Trimestral',  DATE_ADD(CURRENT_DATE, INTERVAL 3 MONTH), Contracte.dataVenciment);
+            END //
+DELIMITER ;
