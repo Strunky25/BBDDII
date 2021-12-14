@@ -1,0 +1,27 @@
+DELIMITER //
+CREATE TRIGGER creacioMissatge AFTER INSERT ON contingut
+FOR EACH ROW
+BEGIN
+	DECLARE minA integer;
+    DECLARE maxA integer;
+
+	SELECT MIN(r_categoria_favorita.idContracte) INTO minA 
+	FROM r_categoria_favorita
+	WHERE r_categoria_favorita.nomCategoria = NEW.nomCategoria;
+    
+    SELECT MAX(r_categoria_favorita.idContracte) INTO maxA
+    FROM r_categoria_favorita
+	WHERE r_categoria_favorita.nomCategoria = NEW.nomCategoria;
+    
+	WHILE minA != maxA
+    do
+  	 	INSERT INTO missatge(dataGeneració, idContracte, idContingut) VALUES (current_date, minA, NEW.idContingut);
+        
+    	SELECT MIN(r_categoria_favorita.idContracte) INTO minA
+        FROM r_categoria_favorita
+		WHERE r_categoria_favorita.nomCategoria = NEW.nomCategoria AND r_categoria_favorita.idContracte>minA;
+	END while;
+    
+    INSERT INTO missatge(dataGeneració, idContracte, idContingut) VALUES (current_date, maxA, NEW.idContingut);
+    
+END

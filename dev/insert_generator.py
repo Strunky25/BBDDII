@@ -139,26 +139,26 @@ def generar_favorits(file):
             video = videos[j]
             insert_R_Contingut_Favorit = insert_R_Contingut_Favorit.replace(";", f', (\'{i}\',\'{video}\');')
 
-        categorias = rand.sample(range(1, len(CATEGORIES)-1), 5)
+        categorias = rand.sample(range(0, len(CATEGORIES)-1), 5)
         for k in range(5):
-            categoria = CATEGORIES[k]
+            categoria = CATEGORIES[categorias[k]]
             insert_R_Categoria_Favorita = insert_R_Categoria_Favorita.replace(";", f', (\'{i}\',\'{categoria}\');')
             
     insert_R_Contingut_Favorit = insert_R_Contingut_Favorit.replace("VALUES ,", "VALUES")
     insert_R_Categoria_Favorita = insert_R_Categoria_Favorita.replace("VALUES ,", "VALUES")
 
-    file.write(insert_R_Contingut_Favorit+ "\n")
+  #  file.write(insert_R_Contingut_Favorit+ "\n")
     file.write(insert_R_Categoria_Favorita+ "\n")
 
 
 def main():
-    with open('c:/Users/walli/OneDrive/Escritorio/UIB/3/bd/BBDDII/dev/data/prova.txt', "w", encoding="utf-8") as f:
+    with open('c:/Users/walli/OneDrive/Escritorio/UIB/3/bd/BBDDII/dev/data/prova2.txt', "w", encoding="utf-8") as f:
         faker = Faker('es_ES')
-        generar_constants(f)
-        generar_usuaris(f, faker)
-        generar_categoria(f)
-        generar_contingut(f)
-        generar_contracte(f)
+        # generar_constants(f)
+        # generar_usuaris(f, faker)
+        # generar_categoria(f)
+        # generar_contingut(f)
+        # generar_contracte(f)
         generar_favorits(f)
     pass
 
