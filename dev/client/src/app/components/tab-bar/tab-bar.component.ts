@@ -23,5 +23,8 @@ export class TabBarComponent implements OnInit {
       this.contingutsFavorits = val;
       this.auth.getCurrentUser().contingutsFavorits = this.contingutsFavorits;
     });
+    this.conts
+      .obtenirContingutsCategoriesFavorites()
+      .subscribe((val) => (this.contingutsCategoriesFavorites = val));
   }
 }

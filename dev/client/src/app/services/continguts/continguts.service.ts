@@ -20,6 +20,14 @@ export class ContingutsService {
 
   public obtenirContingutsFavorits(): Observable<Contingut[]> {
     return this.http.get<Contingut[]>(
+      `/public/servidor/getContingutsFromCategoria.php?nomUsuari=${
+        this.auth.getCurrentUser().nomUsuari
+      }`
+    );
+  }
+
+  public obtenirContingutsCategoriesFavorites(): Observable<Contingut[]> {
+    return this.http.get<Contingut[]>(
       `/public/servidor/getContingutsFavorits.php?nomUsuari=${
         this.auth.getCurrentUser().nomUsuari
       }`

@@ -1,5 +1,13 @@
 <mat-tab-group mat-align-tabs="center">
-  <mat-tab label="Tots els continguts"><app-show-cards [continguts]="contingutsVisualitzables"></app-show-cards></mat-tab>
-  <mat-tab label="Continguts favorits"><app-show-cards [continguts]="contingutsFavorits"></app-show-cards></mat-tab>
-  <mat-tab label="Continguts de categories favorites"></mat-tab>
+  <mat-tab label="Tots els continguts"
+    ><app-show-cards [continguts]="contingutsVisualitzables"></app-show-cards
+  ></mat-tab>
+  <mat-tab label="Continguts favorits"
+    ><app-show-cards [continguts]="contingutsFavorits"></app-show-cards
+  ></mat-tab>
+  <mat-tab label="Continguts de categories favorites"
+    ><app-show-cards
+      [continguts]="contingutsCategoriesFavorites"
+    ></app-show-cards
+  ></mat-tab>
 </mat-tab-group>
