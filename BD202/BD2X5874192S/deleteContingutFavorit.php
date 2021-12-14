@@ -11,7 +11,7 @@ $idContingut = $jsonData->idContingut;
 
 $conexio = mysqli_connect("localhost", "root", "") or die("Error conectant amb el servidor");
 $bd = mysqli_select_db($conexio, "bd202") or die("Error conectant amb la base de dades");
-$consulta = "DELETE FROM R_Contingut_Favorit WHERE idContracte = (SELECT idContracte FROM contracte WHERE nomUsuari='$nomUsuari')) AND idContingut = '$idContingut'";
+$consulta = "DELETE FROM R_Contingut_Favorit WHERE idContracte = (SELECT idContracte FROM contracte WHERE nomUsuari='$nomUsuari') AND idContingut = '$idContingut'";
 $result = mysqli_query($conexio, $consulta);
 mysqli_close($conexio);
 
