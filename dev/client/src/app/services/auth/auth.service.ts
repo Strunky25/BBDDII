@@ -23,7 +23,7 @@ export class AuthService {
 
   public loginUser(nomUsuari: String, pass: String): Observable<any> {
     return this.http.get<any>(
-      `/public/servidor/login.php?nomUsuari=${nomUsuari}&contrassenya=${pass}`
+      `/BD202/servidor/login.php?nomUsuari=${nomUsuari}&contrassenya=${pass}`
     );
   }
 

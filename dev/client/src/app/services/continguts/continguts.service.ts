@@ -12,7 +12,7 @@ export class ContingutsService {
 
   public obtenirContingutsVisualitzables(): Observable<Contingut[]> {
     return this.http.get<Contingut[]>(
-      `/public/servidor/getContingutsVisualitzables.php?nomUsuari=${
+      `/BD202/servidor/getContingutsVisualitzables.php?nomUsuari=${
         this.auth.getCurrentUser().nomUsuari
       }`
     );
@@ -20,7 +20,7 @@ export class ContingutsService {
 
   public obtenirContingutsCategoriesFavorites(): Observable<Contingut[]> {
     return this.http.get<Contingut[]>(
-      `/public/servidor/getContingutsFromCategoria.php?nomUsuari=${
+      `/BD202/servidor/getContingutsFromCategoria.php?nomUsuari=${
         this.auth.getCurrentUser().nomUsuari
       }`
     );
@@ -28,21 +28,21 @@ export class ContingutsService {
 
   public obtenirContingutsFavorits(): Observable<Contingut[]> {
     return this.http.get<Contingut[]>(
-      `/public/servidor/getContingutsFavorits.php?nomUsuari=${
+      `/BD202/servidor/getContingutsFavorits.php?nomUsuari=${
         this.auth.getCurrentUser().nomUsuari
       }`
     );
   }
 
   public afegirContingutFavorit(idContingut: number): Observable<any> {
-    return this.http.post('/public/servidor/addContingutFavorit.php', {
+    return this.http.post('/BD202/servidor/addContingutFavorit.php', {
       nomUsuari: this.auth.getCurrentUser().nomUsuari,
       idContingut,
     });
   }
 
   public llevarContingutFavorit(idContingut: number): Observable<any> {
-    return this.http.post('/public/servidor/deleteContingutFavorit.php', {
+    return this.http.post('/BD202/servidor/deleteContingutFavorit.php', {
       nomUsuari: this.auth.getCurrentUser().nomUsuari,
       idContingut,
     });
