@@ -10,7 +10,11 @@ import { MissatgesService } from 'src/app/services/missatges/missatges.service';
 })
 export class HeaderComponent implements OnInit {
   nMissatges: number = 1;
-  constructor(private miss: MissatgesService, private auth: AuthService, private router: Router) {}
+  constructor(
+    private miss: MissatgesService,
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.miss
@@ -20,5 +24,9 @@ export class HeaderComponent implements OnInit {
 
   navigateToMissatges(): void {
     this.router.navigate(['/missatges']);
+  }
+
+  navigateToContinguts(): void {
+    this.router.navigate(['/continguts']);
   }
 }

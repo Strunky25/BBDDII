@@ -3,13 +3,13 @@
   <mat-card class="card">
     <mat-card-header class="header">
       <mat-card-title>{{ contingut.titol }}</mat-card-title>
-      <mat-card-subtitle>{{ contingut.categoria.nom }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ contingut.nomCategoria }}</mat-card-subtitle>
       <mat-card-actions align="end">
-        <button mat-button (click)="afegirContFav(contingut)">
-          Afegir a continguts favorits
+        <button mat-button (click)="toggleContFav()">
+          {{ contFav ? "Eliminar de" : "Afegir a" }} continguts favorits
         </button>
-        <button mat-button (click)="afegirCatFav(contingut.categoria)">
-          Afegir a categories favorites
+        <button mat-button (click)="toggleCatFav()">
+          {{ catFav ? "Eliminar de" : "Afegir a" }} categories favorites
         </button>
       </mat-card-actions>
     </mat-card-header>
@@ -17,7 +17,7 @@
       <iframe
         width="1280"
         height="720"
-        src="https://www.youtube.com/embed/SN3saeWHMIw"
+        [src]="contingut.url | safe"
         title="YouTube video player"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

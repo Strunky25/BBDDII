@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Categoria } from 'src/app/models/categoria';
 import { Contingut } from 'src/app/models/contingut';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ContingutsService } from 'src/app/services/continguts/continguts.service';
@@ -11,26 +10,39 @@ import { ContingutsService } from 'src/app/services/continguts/continguts.servic
   styleUrls: ['./contingut.component.css'],
 })
 export class ContingutComponent implements OnInit {
-  contingut!: Contingut;
+  public contingut!: Contingut;
+  public contFav: boolean = false;
+  public catFav: boolean = false;
+
   constructor(
-    private continguts: ContingutsService,
     private route: ActivatedRoute,
-    private auth: AuthService
+    private auth: AuthService,
+    private conts: ContingutsService
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.continguts.obtenirContingutPerId(params.videoUrl).subscribe((value) => {
-        this.contingut = value;
-      });
+    this.route.queryParams.subscribe((params) => {
+      this.contingut = params as Contingut;
+      this.contFav =
+        this.auth
+          .getCurrentUser()
+          .contingutsFavorits?.filter(
+            (value) => value.idContingut === this.contingut.idContingut
+          ).length !== 0;
     });
   }
 
-  afegirCatFav(categoria: Categoria): void {
-    this.continguts.afegirCategoriaFavorita(categoria, this.auth.getCurrentUser());
+  public toggleContFav(): void {
+    this.contFav ? this.deleteContFav() : this.addContFav();
   }
 
-  afegirContFav(contingut: Contingut): void {
-    this.continguts.afegirContingutFavorit(contingut, this.auth.getCurrentUser());
+  private deleteContFav(): void {
+    this.conts.llevarContingutFavorit(this.contingut.idContingut);
   }
+
+  private addContFav(): void {
+    this.conts.afegirContingutFavorit(this.contingut.idContingut);
+  }
+
+  public toggleCatFav(): void {}
 }

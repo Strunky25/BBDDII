@@ -1,3 +1,4 @@
+import { Contingut } from './contingut';
 import { Contracte } from './contracte';
 
 export interface Usuari {
@@ -6,5 +7,6 @@ export interface Usuari {
   nom: string;
   llinatges: string;
   tipusUsuari: string;
+  contingutsFavorits?: Contingut[];
   contracte?: Contracte;
 }

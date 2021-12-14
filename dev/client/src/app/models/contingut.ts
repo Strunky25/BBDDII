@@ -1,8 +1,6 @@
-import { Categoria } from './categoria';
-
 export interface Contingut {
+  idContingut: number;
   titol: string;
   url: string;
-  categoria: Categoria;
-  tipusUsuaris: string[];
+  nomCategoria: string;
 }

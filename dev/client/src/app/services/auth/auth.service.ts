@@ -7,7 +7,13 @@ import { Usuari } from 'src/app/models/usuari';
   providedIn: 'root',
 })
 export class AuthService {
-  private user!: Usuari;
+  private user: Usuari = {
+    nomUsuari: '',
+    nom: '',
+    llinatges: '',
+    contrassenya: '',
+    tipusUsuari: '',
+  };
 
   constructor(private http: HttpClient) {}
 
@@ -16,10 +22,16 @@ export class AuthService {
   }
 
   public loginUser(nomUsuari: String, pass: String): Observable<any> {
-    return this.http.get<any>(`/public/servidor/login.php?nomUsuari=${nomUsuari}&contrassenya=${pass}`);
+    return this.http.get<any>(
+      `/public/servidor/login.php?nomUsuari=${nomUsuari}&contrassenya=${pass}`
+    );
   }
 
   public getCurrentUser(): Usuari {
     return this.user;
+  }
+
+  public setCurrentUser(user: Usuari): void {
+    this.user = user;
   }
 }

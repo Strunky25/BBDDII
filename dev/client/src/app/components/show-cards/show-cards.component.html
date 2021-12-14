@@ -1,11 +1,11 @@
 <div class="container">
-  <mat-card class="card" *ngFor="let contingut of continguts" (click)="goToContingut(contingut.url)">
+  <mat-card class="card" *ngFor="let contingut of continguts" (click)="goToContingut(contingut)">
     <mat-card-header>
       <mat-card-title>{{ contingut.titol }}</mat-card-title>
-      <mat-card-subtitle>{{ contingut.categoria.nom }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ contingut.nomCategoria }}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <img src="assets/thumbnail.png" alt="Video" />
+      <img src="assets/thumbnail.png" alt="Video" height="275px" width="400px" />
     </mat-card-content>
   </mat-card>
 </div>

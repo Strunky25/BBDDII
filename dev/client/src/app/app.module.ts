@@ -31,6 +31,7 @@ import { CategoriesFavoritesComponent } from './components/categories-favorites/
 import { ContingutComponent } from './components/contingut/contingut.component';
 import { MatListModule } from '@angular/material/list';
 import { MissatgesComponent } from './components/missatges/missatges.component';
+import { SafePipe } from './pipes/safe-pipe';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { MissatgesComponent } from './components/missatges/missatges.component';
     CategoriesFavoritesComponent,
     ContingutComponent,
     MissatgesComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

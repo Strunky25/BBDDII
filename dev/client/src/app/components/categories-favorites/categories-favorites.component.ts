@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Categoria } from 'src/app/models/categoria';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ContingutsService } from 'src/app/services/continguts/continguts.service';
 
@@ -9,12 +8,12 @@ import { ContingutsService } from 'src/app/services/continguts/continguts.servic
   styleUrls: ['./categories-favorites.component.css']
 })
 export class CategoriesFavoritesComponent implements OnInit {
-  categoriesFavorites: Categoria[] = [];
+  categoriesFavorites: string[] = [];
 
   constructor(private conts: ContingutsService, private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.conts.obtenirCategoriesFavorites(this.auth.getCurrentUser()).subscribe((value) => this.categoriesFavorites = value);
+    //this.conts.obtenirCategoriesFavorites(this.auth.getCurrentUser()).subscribe((value) => this.categoriesFavorites = value);
   }
 
 }

@@ -1,63 +1,42 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Categoria } from 'src/app/models/categoria';
 import { Contingut } from 'src/app/models/contingut';
-import { Usuari } from 'src/app/models/usuari';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ContingutsService {
-  private continguts: Contingut[] = [
-    {
-      titol: 'EL GIGANTE NOBLE LO HA VUELTO A HACER',
-      url: 'https://youtu.be/SN3saeWHMIw',
-      categoria: { nom: 'Entreteniment' },
-      tipusUsuaris: ['Adult'],
-    } as Contingut,
-  ];
-  constructor() {}
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
-  obtenirTotsContinguts(): Observable<Contingut[]> {
-    return new Observable((subscriber) => {
-      subscriber.next(this.continguts);
+  public obtenirContingutsVisualitzables(): Observable<Contingut[]> {
+    return this.http.get<Contingut[]>(
+      `/public/servidor/getContingutsVisualitzables.php?nomUsuari=${
+        this.auth.getCurrentUser().nomUsuari
+      }`
+    );
+  }
+
+  public obtenirContingutsFavorits(): Observable<Contingut[]> {
+    return this.http.get<Contingut[]>(
+      `/public/servidor/getContingutsFavorits.php?nomUsuari=${
+        this.auth.getCurrentUser().nomUsuari
+      }`
+    );
+  }
+
+  public afegirContingutFavorit(idContingut: number): Observable<any> {
+    return this.http.post('/public/servidor/addContingutFavorit.php', {
+      nomUsuari: this.auth.getCurrentUser().nomUsuari,
+      idContingut,
     });
   }
 
-  obtenirContingutsFavorits(usuari: Usuari): Observable<Contingut[]> {
-    return new Observable((subscriber) => {
-      subscriber.next(this.continguts);
-    });
-  }
-
-  obtenirContingutsCategoriesFavorites(usuari: Usuari): Observable<Contingut[]> {
-    return new Observable((subscriber) => {
-      subscriber.next(this.continguts);
-    });
-  }
-
-  afegirCategoriaFavorita(cat: Categoria, usuari: Usuari): Observable<boolean> {
-    return new Observable<boolean>((subscriber) => {
-      subscriber.next(true);
-    });
-  }
-
-  afegirContingutFavorit(cont: Contingut, usuari: Usuari): Observable<boolean> {
-    return new Observable<boolean>((subscriber) => {
-      this.continguts.push(cont);
-      subscriber.next(true);
-    });
-  }
-
-  obtenirContingutPerId(url: String): Observable<Contingut> {
-    return new Observable<Contingut>((subscriber) => {
-      subscriber.next(this.continguts[0]);
-    });
-  }
-
-  obtenirCategoriesFavorites(usuari: Usuari): Observable<Categoria[]> {
-    return new Observable<Categoria[]>((subscriber) => {
-      subscriber.next(this.continguts.map((value) => value.categoria));
+  public llevarContingutFavorit(idContingut: number): Observable<any> {
+    return this.http.post('/public/servidor/deleteContingutFavorit.php', {
+      nomUsuari: this.auth.getCurrentUser().nomUsuari,
+      idContingut,
     });
   }
 }

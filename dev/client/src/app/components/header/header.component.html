@@ -2,7 +2,7 @@
   <button mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon>menu</mat-icon>
   </button>
-  <h1>Overwatch 2</h1>
+  <h1 (click)="navigateToContinguts()">Overwatch 2</h1>
   <button mat-icon-button (click)="navigateToMissatges()">
     <mat-icon [matBadge]="nMissatges" matBadgeColor="warn">notifications</mat-icon>
   </button>

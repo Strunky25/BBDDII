@@ -6,12 +6,12 @@ if (!$jsonData) {
     exit("No hi ha dades");
 }
 
-$idContracte = $jsonData->idContracte;
+$nomUsuari = $jsonData->nomUsuari;
 $idContingut = $jsonData->idContingut;
 
 $conexio = mysqli_connect("localhost", "root", "") or die("Error conectant amb el servidor");
 $bd = mysqli_select_db($conexio, "bd202") or die("Error conectant amb la base de dades");
-$consulta = "INSERT INTO r_contingut_favorit VALUES ('".$idContracte."', '".$idContingut."')";
+$consulta = "INSERT INTO r_contingut_favorit VALUES ((SELECT idContracte FROM contracte WHERE nomUsuari='$nomUsuari'), '$idContingut')";
 $result = mysqli_query($conexio, $consulta);
 mysqli_close($conexio);
 

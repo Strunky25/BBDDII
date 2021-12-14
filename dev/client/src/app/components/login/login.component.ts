@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Usuari } from 'src/app/models/usuari';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -14,11 +15,20 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   loginUser(): void {
-    this.authService.loginUser(this.nomUsuari, this.contrassenya).subscribe((res) => {
-      if (res.num_rows && res.num_rows > 0) {
-        console.log(res);
-        this.router.navigate(['continguts']);
-      }
-    });
+    this.authService
+      .loginUser(this.nomUsuari, this.contrassenya)
+      .subscribe((res) => {
+        if (res) {
+          const usuari: Usuari = {
+            nom: res[0].nom,
+            nomUsuari: res[0].nomUsuari,
+            tipusUsuari: res[0].tipusUsuari,
+            llinatges: res[0].llinatges,
+            contrassenya: res[0].contrasenya,
+          };
+          this.authService.setCurrentUser(usuari);
+          this.router.navigate(['continguts']);
+        }
+      });
   }
 }
