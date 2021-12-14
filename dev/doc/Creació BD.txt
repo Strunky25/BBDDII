@@ -60,23 +60,23 @@ CREATE TABLE Missatge (
 CREATE TABLE R_Contingut_Favorit (
 	idContracte INT(20) NOT NULL,
 	idContingut INT(20) NOT NULL,
+    PRIMARY KEY(idContracte, idContingut),
 	FOREIGN KEY (idContracte) REFERENCES Contracte (idContracte),
-	FOREIGN KEY (idContingut) REFERENCES Contingut (idContingut),
-	PRIMARY KEY(idContracte, idContingut)
+	FOREIGN KEY (idContingut) REFERENCES Contingut (idContingut)
 );
 
 CREATE TABLE R_Categoria_Favorita (
 	idContracte INT(20) NOT NULL,
 	nomCategoria VARCHAR(20) NOT NULL,
+	PRIMARY KEY(idContracte, nomCategoria),
 	FOREIGN KEY (idContracte) REFERENCES Contracte (idContracte),
-	FOREIGN KEY (nomCategoria) REFERENCES Categoria (nomCategoria),
-	PRIMARY KEY(idContracte, nomCategoria)
+	FOREIGN KEY (nomCategoria) REFERENCES Categoria (nomCategoria)
 );
 
 CREATE TABLE R_Contingut_TipusUsuari (
 	idContingut INT(20) NOT NULL,
 	tipusUsuari VARCHAR(20) NOT NULL,
+	PRIMARY KEY(idContingut, tipusUsuari),
 	FOREIGN KEY (idContingut) REFERENCES Contingut (idContingut),
-	FOREIGN KEY (tipusUsuari) REFERENCES TipusUsuari (tipusUsuari),
-	PRIMARY KEY(idContingut, tipusUsuari)
+	FOREIGN KEY (tipusUsuari) REFERENCES TipusUsuari (tipusUsuari)
 );

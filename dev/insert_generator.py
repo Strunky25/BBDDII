@@ -147,8 +147,8 @@ def generar_favorits(file):
     insert_R_Contingut_Favorit = insert_R_Contingut_Favorit.replace("VALUES ,", "VALUES")
     insert_R_Categoria_Favorita = insert_R_Categoria_Favorita.replace("VALUES ,", "VALUES")
 
-  #  file.write(insert_R_Contingut_Favorit+ "\n")
-    file.write(insert_R_Categoria_Favorita+ "\n")
+    file.write(insert_R_Contingut_Favorit+ "\n")
+   # file.write(insert_R_Categoria_Favorita+ "\n")
 
 
 def main():
