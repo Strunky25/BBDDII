@@ -10,9 +10,17 @@ import { ContingutsService } from 'src/app/services/continguts/continguts.servic
   styleUrls: ['./contingut.component.css'],
 })
 export class ContingutComponent implements OnInit {
-  public contingut!: Contingut;
+  public contingut: Contingut = {
+    idContingut: 0,
+    titol: '',
+    url: '',
+    nomCategoria: '',
+  };
   public contFav: boolean = false;
   public catFav: boolean = false;
+
+  public readonly likeButtonColor: string = this.contFav ? 'warn' : 'primary';
+  public readonly addButtonColor: string = this.catFav ? 'warn' : 'primary';
 
   constructor(
     private route: ActivatedRoute,
@@ -32,16 +40,30 @@ export class ContingutComponent implements OnInit {
     });
   }
 
-  public toggleContFav(): void {
+  public manageFavClick(): void {
     this.contFav ? this.deleteContFav() : this.addContFav();
   }
 
+  public manageCatClick(): void {}
+
   private deleteContFav(): void {
-    this.conts.llevarContingutFavorit(this.contingut.idContingut);
+    this.conts
+      .llevarContingutFavorit(this.contingut.idContingut)
+      .subscribe((res) => {
+        if (res) {
+          this.contFav = false;
+        }
+      });
   }
 
   private addContFav(): void {
-    this.conts.afegirContingutFavorit(this.contingut.idContingut);
+    this.conts
+      .afegirContingutFavorit(this.contingut.idContingut)
+      .subscribe((res) => {
+        if (res) {
+          this.contFav = true;
+        }
+      });
   }
 
   public toggleCatFav(): void {}

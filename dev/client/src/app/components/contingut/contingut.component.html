@@ -5,11 +5,11 @@
       <mat-card-title>{{ contingut.titol }}</mat-card-title>
       <mat-card-subtitle>{{ contingut.nomCategoria }}</mat-card-subtitle>
       <mat-card-actions align="end">
-        <button mat-button (click)="toggleContFav()">
-          {{ contFav ? "Eliminar de" : "Afegir a" }} continguts favorits
+        <button mat-icon-button color="warn" (click)="manageFavClick()">
+          <mat-icon>{{ contFav ? "favorite" : "favorite_border" }}</mat-icon>
         </button>
-        <button mat-button (click)="toggleCatFav()">
-          {{ catFav ? "Eliminar de" : "Afegir a" }} categories favorites
+        <button mat-icon-button color="yellow" (click)="manageCatClick()">
+          <mat-icon>{{ catFav ? "star" : "star_border" }}</mat-icon>
         </button>
       </mat-card-actions>
     </mat-card-header>
