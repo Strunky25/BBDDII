@@ -27,11 +27,10 @@ export class RegisterComponent {
         llinatges: this.llinatges,
         tipusUsuari: this.tipusUsuari,
         contingutsFavorits: [],
-        categoriesFavorites: []
+        categoriesFavorites: [],
       })
       .subscribe((val) => {
         if (val) {
-          console.log(val);
           this.router.navigate(['']);
         }
       });

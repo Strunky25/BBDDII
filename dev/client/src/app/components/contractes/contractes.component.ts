@@ -15,14 +15,16 @@ export class ContractesComponent implements OnInit {
 
   ngOnInit(): void {
     this.cont.getContractes().subscribe((value) => {
-      this.contractes = value;
-      this.contractes.forEach((contracte, i) => {
-        if (contracte.tipusContracte.toLowerCase() === 'mensual') {
-          this.preu[i] = 15;
-        } else {
-          this.preu[i] = 40;
-        }
-      });
+      if (value && value.length > 0) {
+        this.contractes = value;
+        this.contractes.forEach((contracte, i) => {
+          if (contracte.tipusContracte.toLowerCase() === 'mensual') {
+            this.preu[i] = 15;
+          } else {
+            this.preu[i] = 40;
+          }
+        });
+      }
     });
   }
 }

@@ -9,7 +9,7 @@ import { MissatgesService } from 'src/app/services/missatges/missatges.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  public nMissatges: number = 1;
+  public nMissatges: number = 0;
 
   constructor(
     private miss: MissatgesService,
