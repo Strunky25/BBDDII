@@ -7,6 +7,7 @@ export interface Usuari {
   nom: string;
   llinatges: string;
   tipusUsuari: string;
-  contingutsFavorits?: Contingut[];
+  contingutsFavorits: Contingut[];
+  categoriesFavorites: string[];
   contracte?: Contracte;
 }

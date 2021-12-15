@@ -25,6 +25,8 @@ export class LoginComponent {
             tipusUsuari: res[0].tipusUsuari,
             llinatges: res[0].llinatges,
             contrassenya: res[0].contrasenya,
+            categoriesFavorites: [],
+            contingutsFavorits: []
           };
           this.authService.setCurrentUser(usuari);
           this.router.navigate(['continguts']);

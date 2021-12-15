@@ -14,6 +14,7 @@ export class AuthService {
     contrassenya: '',
     tipusUsuari: '',
     contingutsFavorits: [],
+    categoriesFavorites: []
   } as Usuari;
 
   constructor(private http: HttpClient) {}

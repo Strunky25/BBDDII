@@ -12,10 +12,10 @@ export class ContingutsComponent implements OnInit {
   constructor(private contractes: ContractesService) {}
 
   ngOnInit(): void {
-    this.contractes.getContractes().subscribe(res => {
+    this.contractes.getContractes().subscribe((res) => {
       if (res && res.length > 0) {
         this.hasContracte = true;
       }
-    })
+    });
   }
 }

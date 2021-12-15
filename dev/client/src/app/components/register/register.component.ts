@@ -26,6 +26,8 @@ export class RegisterComponent {
         nom: this.nom,
         llinatges: this.llinatges,
         tipusUsuari: this.tipusUsuari,
+        contingutsFavorits: [],
+        categoriesFavorites: []
       })
       .subscribe((val) => {
         if (val) {

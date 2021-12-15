@@ -47,4 +47,26 @@ export class ContingutsService {
       idContingut,
     });
   }
+
+  public afegirCategoriaFavorita(nomCategoria: string): Observable<any> {
+    return this.http.post('/BD202/servidor/addCategoriaFavorita.php', {
+      nomUsuari: this.auth.getCurrentUser().nomUsuari,
+      nomCategoria,
+    });
+  }
+
+  public llevarCategoriaFavorita(nomCategoria: string): Observable<any> {
+    return this.http.post('/BD202/servidor/deleteCategoriaFavorita.php', {
+      nomUsuari: this.auth.getCurrentUser().nomUsuari,
+      nomCategoria,
+    });
+  }
+
+  public obtenirCategoriesFavorites(): Observable<any[]> {
+    return this.http.get<any[]>(
+      `/BD202/servidor/getCategoriesFavorites.php?nomUsuari=${
+        this.auth.getCurrentUser().nomUsuari
+      }`
+    );
+  }
 }
