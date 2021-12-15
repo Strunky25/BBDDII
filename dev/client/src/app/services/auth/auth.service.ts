@@ -20,7 +20,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   public registerUser(user: Usuari): Observable<boolean> {
-    return this.http.post<boolean>('/public/servidor/register.php', user);
+    return this.http.post<boolean>('/BD202/servidor/register.php', user);
   }
 
   public loginUser(nomUsuari: String, pass: String): Observable<any> {
