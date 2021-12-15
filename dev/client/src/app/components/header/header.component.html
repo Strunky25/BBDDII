@@ -4,7 +4,9 @@
   </button>
   <h1 (click)="navigateToContinguts()">Overwatch 2</h1>
   <button mat-icon-button (click)="navigateToMissatges()">
-    <mat-icon [matBadge]="nMissatges" matBadgeColor="warn">notifications</mat-icon>
+    <mat-icon [matBadge]="nMissatges" matBadgeColor="warn"
+      >notifications</mat-icon
+    >
   </button>
 </mat-toolbar>
 <mat-menu #menu="matMenu">
@@ -19,5 +21,9 @@
   <a routerLink="/contractes" mat-menu-item>
     <mat-icon>description</mat-icon>
     <span>Contractes</span>
+  </a>
+  <a routerLink="/" mat-menu-item>
+    <mat-icon>logout</mat-icon>
+    <span>Tancar sessió</span>
   </a>
 </mat-menu>

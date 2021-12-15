@@ -2,11 +2,9 @@
 <div class="container">
   <h1>Contractes</h1>
   <mat-list class="list">
-    <mat-list-item *ngFor="let contracte of contractes">
+    <mat-list-item *ngFor="let contracte of contractes; let i = index">
       <mat-icon mat-list-icon>description</mat-icon>
-      <div mat-line>
-        {{ contracte.tipus.tipus | titlecase }} ({{ contracte.tipus.preu }}€)
-      </div>
+      <div mat-line>{{ contracte.tipusContracte | titlecase }} ({{ preu[i] }}€)</div>
       <div mat-line>{{ contracte.dataAlta }}</div>
     </mat-list-item>
   </mat-list>

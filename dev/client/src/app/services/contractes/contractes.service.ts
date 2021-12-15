@@ -1,42 +1,27 @@
-// import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Contracte } from 'src/app/models/contracte';
-import { Usuari } from 'src/app/models/usuari';
-// import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ContractesService {
-  public contractes: Contracte[] = [];
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
-  constructor(/*private http: HttpClient, private auth: AuthService*/) {}
-
-  hasContracte(usuari: Usuari): Observable<boolean> {
-    return new Observable((subscriber) => {
-      subscriber.next(true);
-      subscriber.complete();
-    });
-    // this.http.get("ddsdss", usuari);
+  getContractes(): Observable<Contracte[]> {
+    return this.http.get<Contracte[]>(
+      `/BD202/servidor/getContractes.php?nomUsuari=${
+        this.auth.getCurrentUser().nomUsuari
+      }`
+    );
   }
 
-  createContracte(contracte: Contracte, usuari: Usuari): Observable<boolean> {
-    this.contractes.push(contracte);
-    console.log(this.contractes);
-    return new Observable((subscriber) => {
-      subscriber.next(true);
-      subscriber.complete();
+  createContracte(tipusContracte: string): Observable<boolean> {
+    return this.http.post<boolean>('/BD202/servidor/addContracte.php', {
+      nomUsuari: this.auth.getCurrentUser().nomUsuari,
+      tipusContracte,
     });
-    // this.http.post("ddsdss", {contracte, usuari});
-  }
-
-  getContractes(usuari: Usuari): Observable<Contracte[]> {
-    console.log(this.contractes);
-    return new Observable((subscriber) => {
-      subscriber.next(this.contractes);
-      subscriber.complete();
-    });
-    // this.http.get("ddsdss", usuari);
   }
 }

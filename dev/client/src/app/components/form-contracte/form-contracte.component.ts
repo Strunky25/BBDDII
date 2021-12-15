@@ -6,6 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./form-contracte.component.css'],
 })
 export class FormContracteComponent {
-  public dataAlta!: Date;
   public tipusContracte: String = "mensual";
 }

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { TipusContracte } from 'src/app/models/tipus-contracte';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { Router } from '@angular/router';
 import { ContractesService } from 'src/app/services/contractes/contractes.service';
 import { FormContracteComponent } from '../form-contracte/form-contracte.component';
 
@@ -14,23 +13,18 @@ export class AltaContracteComponent {
   constructor(
     public dialog: MatDialog,
     private contractes: ContractesService,
-    private auth: AuthService
+    private router: Router
   ) {}
 
   public openDialog(): void {
     const ref = this.dialog.open(FormContracteComponent);
 
-    ref
-      .afterClosed()
-      .subscribe((val: { dataAlta: Date; tipusContracte: String }) => {
-        this.contractes.createContracte({
-          idContracte: this.contractes.contractes.length,
-          tipus: {
-            tipus: val.tipusContracte,
-            preu: val.tipusContracte === 'mensual' ? 15 : 40,
-          } as TipusContracte,
-          dataAlta: val.dataAlta,
-        }, this.auth.getCurrentUser());
+    ref.afterClosed().subscribe((val: string) => {
+      this.contractes.createContracte(val).subscribe((res) => {
+        if (res) {
+          this.router.navigate(['/contractes']);
+        }
       });
+    });
   }
 }

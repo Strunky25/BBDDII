@@ -9,7 +9,8 @@ import { MissatgesService } from 'src/app/services/missatges/missatges.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  nMissatges: number = 1;
+  public nMissatges: number = 1;
+
   constructor(
     private miss: MissatgesService,
     private auth: AuthService,
@@ -22,11 +23,11 @@ export class HeaderComponent implements OnInit {
       .subscribe((val) => (this.nMissatges = val.length));
   }
 
-  navigateToMissatges(): void {
+  public navigateToMissatges(): void {
     this.router.navigate(['/missatges']);
   }
 
-  navigateToContinguts(): void {
+  public navigateToContinguts(): void {
     this.router.navigate(['/continguts']);
   }
 }

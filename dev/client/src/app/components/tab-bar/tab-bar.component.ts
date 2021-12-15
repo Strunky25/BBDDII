@@ -16,15 +16,19 @@ export class TabBarComponent implements OnInit {
   constructor(private conts: ContingutsService, private auth: AuthService) {}
 
   ngOnInit(): void {
-    this.conts
-      .obtenirContingutsVisualitzables()
-      .subscribe((val) => (this.contingutsVisualitzables = val));
-    this.conts.obtenirContingutsFavorits().subscribe((val) => {
-      this.contingutsFavorits = val;
-      this.auth.getCurrentUser().contingutsFavorits = this.contingutsFavorits;
+    this.conts.obtenirContingutsVisualitzables().subscribe((val) => {
+      if (val && val.length > 0) this.contingutsVisualitzables = val;
     });
-    this.conts
-      .obtenirContingutsCategoriesFavorites()
-      .subscribe((val) => (this.contingutsCategoriesFavorites = val));
+    this.conts.obtenirContingutsFavorits().subscribe((val) => {
+      if (val && val.length > 0) {
+        this.contingutsFavorits = val;
+        this.auth.getCurrentUser().contingutsFavorits = this.contingutsFavorits;
+      }
+    });
+    this.conts.obtenirContingutsCategoriesFavorites().subscribe((val) => {
+      if (val && val.length > 0) {
+        this.contingutsCategoriesFavorites = val;
+      }
+    });
   }
 }

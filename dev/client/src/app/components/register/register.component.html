@@ -6,6 +6,7 @@
         <mat-label>Nom d'usuari</mat-label>
         <input
           matInput
+          required
           name="nomUsuari"
           placeholder="Ex. pepToni17"
           [(ngModel)]="nomUsuari"
@@ -14,6 +15,7 @@
       <mat-form-field>
         <mat-label>Nom</mat-label>
         <input
+          required
           matInput
           name="nom"
           placeholder="Ex. Pep Toni"
@@ -24,6 +26,7 @@
         <mat-label>Llinatges</mat-label>
         <input
           matInput
+          required
           name="llinatges"
           placeholder="Ex. Munar"
           [(ngModel)]="llinatges"
@@ -33,6 +36,8 @@
         <mat-label>Contrassenya</mat-label>
         <input
           matInput
+          required
+          minlength="4"
           name="contrassenya"
           type="password"
           [(ngModel)]="contrassenya"
@@ -42,7 +47,7 @@
         <mat-label>Tipus d'usuari</mat-label>
         <mat-select [(ngModel)]="tipusUsuari" name="tipusUsuari">
           <mat-option *ngFor="let tipo of tipus" [value]="tipo">
-            {{tipo}}
+            {{ tipo }}
           </mat-option>
         </mat-select>
       </mat-form-field>

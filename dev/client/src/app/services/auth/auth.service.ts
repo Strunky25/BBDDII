@@ -13,7 +13,8 @@ export class AuthService {
     llinatges: '',
     contrassenya: '',
     tipusUsuari: '',
-  };
+    contingutsFavorits: [],
+  } as Usuari;
 
   constructor(private http: HttpClient) {}
 
