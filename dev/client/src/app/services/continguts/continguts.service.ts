@@ -75,9 +75,8 @@ export class ContingutsService {
   }
 
   public llevarContingut(idContingut: number): Observable<any> {
-    return this.http.post<any>(
-      '/BD202/servidor/deleteContingut.php',
-      idContingut
-    );
+    return this.http.post<any>('/BD202/servidor/deleteContingut.php', {
+      idContingut,
+    });
   }
 }

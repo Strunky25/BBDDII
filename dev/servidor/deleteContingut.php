@@ -6,8 +6,6 @@ if (!$jsonData) {
 };
 
 $idContingut = $jsonData->idContingut;
-$url = $jsonData->url;
-$nomCategoria = $jsonData->nomCategoria;
 
 $conexio = mysqli_connect("localhost", "root", "") or die("Error conectant amb el servidor");
 $bd = mysqli_select_db($conexio, "bd202") or die("Error conectant amb la base de dades");

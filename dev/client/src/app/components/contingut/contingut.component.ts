@@ -20,6 +20,7 @@ export class ContingutComponent implements OnInit {
   } as Contingut;
   public readonly likeButtonColor: string = this.contFav ? 'warn' : 'primary';
   public readonly addButtonColor: string = this.catFav ? 'warn' : 'primary';
+  public isAdmin: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -41,6 +42,7 @@ export class ContingutComponent implements OnInit {
     this.catFav = this.auth
       .getCurrentUser()
       .categoriesFavorites.includes(this.contingut.nomCategoria);
+    this.isAdmin = this.auth.getCurrentUser().administrador;
   }
 
   public manageFavClick(): void {
