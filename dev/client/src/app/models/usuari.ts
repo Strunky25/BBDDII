@@ -9,5 +9,6 @@ export interface Usuari {
   tipusUsuari: string;
   contingutsFavorits: Contingut[];
   categoriesFavorites: string[];
+  administrador: boolean;
   contracte?: Contracte;
 }

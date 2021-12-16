@@ -26,10 +26,11 @@ export class LoginComponent {
             llinatges: res[0].llinatges,
             contrassenya: res[0].contrasenya,
             categoriesFavorites: [],
-            contingutsFavorits: []
+            contingutsFavorits: [],
+            administrador: res[0].administrador == 1,
           };
           this.authService.setCurrentUser(usuari);
-          this.router.navigate(['continguts']);
+          this.router.navigate(['/continguts']);
         }
       });
   }

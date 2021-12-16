@@ -69,4 +69,15 @@ export class ContingutsService {
       }`
     );
   }
+
+  public afegirContingut(contingut: any): Observable<any> {
+    return this.http.post<any>('/BD202/servidor/addContingut.php', contingut);
+  }
+
+  public llevarContingut(idContingut: number): Observable<any> {
+    return this.http.post<any>(
+      '/BD202/servidor/deleteContingut.php',
+      idContingut
+    );
+  }
 }

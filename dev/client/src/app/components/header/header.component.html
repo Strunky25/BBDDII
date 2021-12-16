@@ -3,11 +3,16 @@
     <mat-icon>menu</mat-icon>
   </button>
   <h1 (click)="navigateToContinguts()">Overwatch 2</h1>
-  <button mat-icon-button (click)="navigateToMissatges()">
-    <mat-icon [matBadge]="nMissatges" matBadgeColor="warn"
-      >notifications</mat-icon
-    >
-  </button>
+  <div class="buttons">
+    <button *ngIf="isAdmin" mat-icon-button (click)="afegirContingut()">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-icon-button (click)="navigateToMissatges()">
+      <mat-icon [matBadge]="nMissatges" matBadgeColor="warn"
+        >notifications</mat-icon
+      >
+    </button>
+  </div>
 </mat-toolbar>
 <mat-menu #menu="matMenu">
   <a routerLink="/continguts" mat-menu-item>

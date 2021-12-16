@@ -1,0 +1,38 @@
+<form>
+  <h2>Nou contingut</h2>
+  <mat-form-field>
+    <mat-label>Títol</mat-label>
+    <input required matInput name="titol" [(ngModel)]="titol" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Enllaç al vídeo</mat-label>
+    <input required matInput name="url" [(ngModel)]="url" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Categoria</mat-label>
+    <mat-select [(ngModel)]="categoria" name="categoria" required>
+      <mat-option *ngFor="let categoria of categories" [value]="categoria">
+        {{ categoria }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Tipus d'usuari dirigit</mat-label>
+    <mat-select [(ngModel)]="tipusUsuari" name="tipusUsuari" required>
+      <mat-option
+        *ngFor="let tipusUsuari of tipusUsuaris"
+        [value]="tipusUsuari"
+      >
+        {{ tipusUsuari }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button
+    mat-raised-button
+    [mat-dialog-close]="{titol, url, categoria, tipusUsuari}"
+    type="submit"
+    color="primary"
+  >
+    Crear contingut
+  </button>
+</form>

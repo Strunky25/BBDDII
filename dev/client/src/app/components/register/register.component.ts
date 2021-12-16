@@ -14,6 +14,7 @@ export class RegisterComponent {
   public nom: string = '';
   public llinatges: string = '';
   public tipusUsuari: string = '';
+  public administrador: boolean = false;
   public readonly tipus: string[] = ['Infantil', 'Adolescent', 'Adult'];
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -28,6 +29,7 @@ export class RegisterComponent {
         tipusUsuari: this.tipusUsuari,
         contingutsFavorits: [],
         categoriesFavorites: [],
+        administrador: this.administrador,
       })
       .subscribe((val) => {
         if (val) {

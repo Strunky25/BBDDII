@@ -32,6 +32,8 @@ import { ContingutComponent } from './components/contingut/contingut.component';
 import { MatListModule } from '@angular/material/list';
 import { MissatgesComponent } from './components/missatges/missatges.component';
 import { SafePipe } from './pipes/safe-pipe';
+import { FormContingutComponent } from './components/form-contingut/form-contingut.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import { SafePipe } from './pipes/safe-pipe';
     CategoriesFavoritesComponent,
     ContingutComponent,
     MissatgesComponent,
-    SafePipe
+    SafePipe,
+    FormContingutComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +60,7 @@ import { SafePipe } from './pipes/safe-pipe';
     MatInputModule,
     MatSelectModule,
     MatFormFieldModule,
+    MatSlideToggleModule,
     MatButtonModule,
     HttpClientModule,
     FormsModule,

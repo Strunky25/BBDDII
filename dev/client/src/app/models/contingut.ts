@@ -1,5 +1,5 @@
 export interface Contingut {
-  idContingut: number;
+  idContingut?: number;
   titol: string;
   url: string;
   nomCategoria: string;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Contingut } from 'src/app/models/contingut';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ContingutsService } from 'src/app/services/continguts/continguts.service';
@@ -24,7 +24,8 @@ export class ContingutComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private auth: AuthService,
-    private conts: ContingutsService
+    private conts: ContingutsService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -52,7 +53,7 @@ export class ContingutComponent implements OnInit {
 
   private deleteContFav(): void {
     this.conts
-      .llevarContingutFavorit(this.contingut.idContingut)
+      .llevarContingutFavorit(this.contingut.idContingut!)
       .subscribe((res) => {
         if (res) {
           this.contFav = false;
@@ -62,7 +63,7 @@ export class ContingutComponent implements OnInit {
 
   private addContFav(): void {
     this.conts
-      .afegirContingutFavorit(this.contingut.idContingut)
+      .afegirContingutFavorit(this.contingut.idContingut!)
       .subscribe((res) => {
         if (res) {
           this.contFav = true;
@@ -88,5 +89,11 @@ export class ContingutComponent implements OnInit {
           this.catFav = true;
         }
       });
+  }
+
+  public deleteContingut(): void {
+    this.conts.llevarContingut(this.contingut.idContingut!).subscribe((res) => {
+      if (res) this.router.navigate(['/continguts']);
+    });
   }
 }

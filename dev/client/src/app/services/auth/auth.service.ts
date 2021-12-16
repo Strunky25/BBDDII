@@ -14,13 +14,21 @@ export class AuthService {
     contrassenya: '',
     tipusUsuari: '',
     contingutsFavorits: [],
-    categoriesFavorites: []
+    categoriesFavorites: [],
+    administrador: false,
   } as Usuari;
 
   constructor(private http: HttpClient) {}
 
   public registerUser(user: Usuari): Observable<boolean> {
-    return this.http.post<boolean>('/BD202/servidor/register.php', user);
+    return this.http.post<boolean>('/BD202/servidor/register.php', {
+      nomUsuari: user.nomUsuari,
+      contrassenya: user.contrassenya,
+      nom: user.nom,
+      llinatges: user.llinatges,
+      administrador: user.administrador,
+      tipusUsuari: user.tipusUsuari,
+    });
   }
 
   public loginUser(nomUsuari: String, pass: String): Observable<any> {

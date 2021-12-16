@@ -8,8 +8,11 @@
         <button mat-icon-button color="warn" (click)="manageFavClick()">
           <mat-icon>{{ contFav ? "favorite" : "favorite_border" }}</mat-icon>
         </button>
-        <button mat-icon-button color="yellow" (click)="manageCatClick()">
+        <button mat-icon-button (click)="manageCatClick()">
           <mat-icon>{{ catFav ? "star" : "star_border" }}</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteContingut()">
+          <mat-icon>delete</mat-icon>
         </button>
       </mat-card-actions>
     </mat-card-header>
