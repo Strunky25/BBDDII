@@ -10,6 +10,7 @@ CREATE TABLE Usuari (
 	nom VARCHAR(30) NOT NULL,
 	llinatges VARCHAR(50) NOT NULL,
 	tipusUsuari VARCHAR(20) NOT NULL,
+	administrador SMALLINT DEFAULT 0 NOT NULL,
 	FOREIGN KEY (tipusUsuari) REFERENCES TipusUsuari (tipusUsuari)
 );
 
