@@ -3,8 +3,23 @@
   <h1>Missatges</h1>
   <mat-list class="list">
     <mat-list-item *ngFor="let missatge of missatges">
-      {{ missatge }}
-      <mat-divider></mat-divider>
+      <div class="inner-container">
+        <div (click)="goToContingutMissatge(missatge)">
+          <h2 mat-line>{{ missatge.titol }}</h2>
+          <span mat-line>
+            Nova recomanació de la categoria {{ missatge.nomCategoria }}
+          </span>
+          <span mat-line> Data: {{ missatge.dataGeneracio }} </span>
+        </div>
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="marcarMissatgeLlegit(missatge.idMissatge)"
+        >
+          <mat-icon>done_all</mat-icon>
+        </button>
+      </div>
+      <mat-divider style="margin-top: 1vh;"></mat-divider>
     </mat-list-item>
   </mat-list>
 </div>
