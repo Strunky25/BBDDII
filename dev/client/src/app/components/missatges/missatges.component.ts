@@ -21,7 +21,14 @@ export class MissatgesComponent implements OnInit {
   }
 
   public marcarMissatgeLlegit(idMissatge: number): void {
-    this.miss.marcarLlegit(idMissatge).subscribe();
+    this.miss
+      .marcarLlegit(idMissatge)
+      .subscribe(
+        () =>
+          (this.missatges = this.missatges.filter(
+            (missatge) => missatge.idMissatge !== idMissatge
+          ))
+      );
   }
 
   public goToContingutMissatge(missatge: Missatge): void {
