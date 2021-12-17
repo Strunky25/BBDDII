@@ -1,3 +1,15 @@
 .container {
   padding: 2vw;
 }
+
+.inner-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inner-container > div:hover {
+  cursor: pointer;
+}

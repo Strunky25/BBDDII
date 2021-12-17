@@ -20,7 +20,7 @@ BEGIN
 			LEAVE enviarMissatge;
 		END IF;
 
-		INSERT INTO missatge(dataGeneració, idContracte, idContingut) 
+		INSERT INTO missatge(dataGeneracio, idContracte, idContingut) 
 		VALUES (current_date, id, NEW.idContingut);
 
 	END LOOP enviarMissatge;

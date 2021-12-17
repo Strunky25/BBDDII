@@ -51,7 +51,7 @@ CREATE TABLE Contingut (
 
 CREATE TABLE Missatge (
 	idMissatge INT(20) PRIMARY KEY AUTO_INCREMENT,
-	dataGeneració DATE NOT NULL,
+	dataGeneracio DATE NOT NULL,
 	llegit BOOLEAN NOT NULL,
 	idContracte INT(20) NOT NULL,
 	idContingut INT(20) NOT NULL,
