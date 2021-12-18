@@ -7,6 +7,8 @@ import string
 import api
 import datetime
 import hashlib
+from datetime import timedelta
+from dateutil.relativedelta import relativedelta
 
 INSERT = "INSERT INTO tabla (columnas) VALUES ;"
 NOMBRE_USUARIS = 300
@@ -112,7 +114,7 @@ def generar_contingut(file):
 
 def generar_contracte(file):
     insert_contracte = INSERT.replace("tabla", "Contracte")
-    insert_contracte = insert_contracte.replace("columnas", "dataAlta, nomUsuari, tipusContracte")
+    insert_contracte = insert_contracte.replace("columnas", "dataAlta, dataVenciment,nomUsuari, tipusContracte")
 
     for i in range(NOMBRE_USUARIS):
         time_between_dates = end_date - start_date
@@ -121,7 +123,11 @@ def generar_contracte(file):
         dataAlta = start_date + datetime.timedelta(days=random_number_of_days)
         nomUsuari = usuaris[i]
         tipusContracte = rand.choice(TIPUS_CONTRACTE)
-        insert_contracte = insert_contracte.replace(";", f', (\'{dataAlta}\',\'{nomUsuari}\',\'{tipusContracte}\');')
+        if (TIPUS_CONTRACTE == 'Mensual'):
+            dataVenciment = dataAlta + relativedelta(month=1)
+        else:
+            dataVenciment = dataAlta + relativedelta(month=3)
+        insert_contracte = insert_contracte.replace(";", f', (\'{dataAlta}\',\'{dataVenciment}\',\'{nomUsuari}\',\'{tipusContracte}\');')
     insert_contracte = insert_contracte.replace("VALUES ,", "VALUES ")
     file.write(insert_contracte+ "\n")
 
@@ -158,8 +164,8 @@ def main():
         # generar_usuaris(f, faker)
         # generar_categoria(f)
         # generar_contingut(f)
-        # generar_contracte(f)
-        generar_favorits(f)
+        generar_contracte(f)
+        # generar_favorits(f)
     pass
 
 

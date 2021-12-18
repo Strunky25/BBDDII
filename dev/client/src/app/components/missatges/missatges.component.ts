@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { Router } from '@angular/router';
+import Missatge from 'src/app/models/missatge';
 import { MissatgesService } from 'src/app/services/missatges/missatges.service';
 
 @Component({
@@ -8,13 +9,36 @@ import { MissatgesService } from 'src/app/services/missatges/missatges.service';
   styleUrls: ['./missatges.component.css'],
 })
 export class MissatgesComponent implements OnInit {
-  missatges: string[] = [];
+  public missatges: Missatge[] = [];
 
-  constructor(private auth: AuthService, private miss: MissatgesService) {}
+  constructor(private miss: MissatgesService, private router: Router) {}
 
   ngOnInit(): void {
+    this.miss.getMissatges().subscribe((res) => {
+      console.log(res);
+      if (res && res.length > 0) this.missatges = res;
+    });
+  }
+
+  public marcarMissatgeLlegit(idMissatge: number): void {
     this.miss
-      .getMissatges(this.auth.getCurrentUser())
-      .subscribe((val) => (this.missatges = val));
+      .marcarLlegit(idMissatge)
+      .subscribe(
+        () =>
+          (this.missatges = this.missatges.filter(
+            (missatge) => missatge.idMissatge !== idMissatge
+          ))
+      );
+  }
+
+  public goToContingutMissatge(missatge: Missatge): void {
+    this.router.navigate(['/contingut'], {
+      queryParams: {
+        idContingut: missatge.idContingut,
+        titol: missatge.titol,
+        url: missatge.url,
+        nomCategoria: missatge.nomCategoria,
+      },
+    });
   }
 }

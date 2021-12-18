@@ -25,9 +25,7 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.miss
-      .getMissatges(this.auth.getCurrentUser())
-      .subscribe((val) => (this.nMissatges = val.length));
+    this.miss.getMissatges().subscribe((val) => (this.nMissatges = val.length));
     this.isAdmin = this.auth.getCurrentUser().administrador;
   }
 

@@ -22,6 +22,7 @@ CREATE TABLE TipusContracte (
 CREATE TABLE Contracte (
 	idContracte INT(20) PRIMARY KEY AUTO_INCREMENT,
 	dataAlta DATE NOT NULL,
+	dataVenciment DATE NOT NULL,
 	nomUsuari VARCHAR(20) NOT NULL,
 	tipusContracte VARCHAR(20) NOT NULL,
 	FOREIGN KEY (nomUsuari) REFERENCES Usuari (nomUsuari),
@@ -50,7 +51,7 @@ CREATE TABLE Contingut (
 
 CREATE TABLE Missatge (
 	idMissatge INT(20) PRIMARY KEY AUTO_INCREMENT,
-	dataGeneració DATE NOT NULL,
+	dataGeneracio DATE NOT NULL,
 	llegit BOOLEAN NOT NULL,
 	idContracte INT(20) NOT NULL,
 	idContingut INT(20) NOT NULL,

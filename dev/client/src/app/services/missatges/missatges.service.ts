@@ -1,16 +1,26 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Usuari } from 'src/app/models/usuari';
+import Missatge from 'src/app/models/missatge';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MissatgesService {
-  private missatges: string[] = ['Hey tio', 'Com va?'];
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
-  getMissatges(usuari: Usuari) {
-    return new Observable<string[]>((subscriber) =>
-      subscriber.next(this.missatges)
+  public getMissatges(): Observable<Missatge[]> {
+    return this.http.get<Missatge[]>(
+      `/BD202/servidor/getRecomanacions.php?nomUsuari=${
+        this.auth.getCurrentUser().nomUsuari
+      }`
     );
+  }
+
+  public marcarLlegit(idMissatge: number): Observable<boolean> {
+    return this.http.post<boolean>('/BD202/servidor/updateMissatge.php', {
+      idMissatge,
+    });
   }
 }
