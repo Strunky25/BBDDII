@@ -4,11 +4,12 @@ import random as rand
 import json
 import urllib.request
 import string
-import api
+# import api
 import datetime
 import hashlib
 from datetime import timedelta
 from dateutil.relativedelta import relativedelta
+import calendar
 
 INSERT = "INSERT INTO tabla (columnas) VALUES ;"
 NOMBRE_USUARIS = 300
@@ -123,10 +124,18 @@ def generar_contracte(file):
         dataAlta = start_date + datetime.timedelta(days=random_number_of_days)
         nomUsuari = usuaris[i]
         tipusContracte = rand.choice(TIPUS_CONTRACTE)
-        if (TIPUS_CONTRACTE == 'Mensual'):
-            dataVenciment = dataAlta + relativedelta(month=1)
+        
+        if (tipusContracte == 'Mensual'):
+            dataVenciment = dataAlta + relativedelta(months=+1)
+            print("Mensual")
+            print(dataAlta)
+            print(dataVenciment)
         else:
-            dataVenciment = dataAlta + relativedelta(month=3)
+            dataVenciment = dataAlta + relativedelta(months=+3)
+            print("Trimestral")
+            print(dataAlta)
+            print(dataVenciment)
+            
         insert_contracte = insert_contracte.replace(";", f', (\'{dataAlta}\',\'{dataVenciment}\',\'{nomUsuari}\',\'{tipusContracte}\');')
     insert_contracte = insert_contracte.replace("VALUES ,", "VALUES ")
     file.write(insert_contracte+ "\n")
@@ -158,10 +167,10 @@ def generar_favorits(file):
 
 
 def main():
-    with open('c:/Users/walli/OneDrive/Escritorio/UIB/3/bd/BBDDII/dev/data/prova2.txt', "w", encoding="utf-8") as f:
+    with open('D:/OneDrive - Universitat de les Illes Balears/carrera/3ro/1er_cuatri/BBDD2/Practicas/Practica_2/BBDDII/dev/data/contractes.txt', "w", encoding="utf-8") as f:
         faker = Faker('es_ES')
-        # generar_constants(f)
-        # generar_usuaris(f, faker)
+        generar_constants(f)
+        generar_usuaris(f, faker)
         # generar_categoria(f)
         # generar_contingut(f)
         generar_contracte(f)
