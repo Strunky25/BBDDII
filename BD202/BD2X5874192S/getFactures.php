@@ -8,7 +8,7 @@ $idContracte = $_GET["idContracte"];
 
 $conexio = mysqli_connect("localhost", "root", "") or die("Error conectant amb el servidor");
 $bd = mysqli_select_db($conexio, "bd202") or die("Error conectant amb la base de dades");
-$consulta = "SELECT * FROM Factura WHERE idContracte = '$idContracte'";
+$consulta = "SELECT idFactura, dataEmissio, llegit FROM Factura WHERE idContracte = '$idContracte' AND llegit IS FALSE";
 $result = mysqli_query($conexio, $consulta);
 if ($result != false && mysqli_num_rows($result) > 0) {
     $resultat = mysqli_fetch_all($result, MYSQLI_ASSOC);

@@ -7,6 +7,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ContingutComponent } from './components/contingut/contingut.component';
 import { CategoriesFavoritesComponent } from './components/categories-favorites/categories-favorites.component';
 import { MissatgesComponent } from './components/missatges/missatges.component';
+import { FacturesComponent } from './components/factures/factures.component';
 
 const routes: Routes = [
   { path: 'continguts', component: ContingutsComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'contingut', component: ContingutComponent },
   { path: 'categoriesFavorites', component: CategoriesFavoritesComponent },
   { path: 'missatges', component: MissatgesComponent },
+  { path: 'factures', component: FacturesComponent },
 ];
 
 @NgModule({

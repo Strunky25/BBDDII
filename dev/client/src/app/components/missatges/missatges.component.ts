@@ -15,7 +15,6 @@ export class MissatgesComponent implements OnInit {
 
   ngOnInit(): void {
     this.miss.getMissatges().subscribe((res) => {
-      console.log(res);
       if (res && res.length > 0) this.missatges = res;
     });
   }

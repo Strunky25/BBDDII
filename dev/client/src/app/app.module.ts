@@ -34,6 +34,7 @@ import { MissatgesComponent } from './components/missatges/missatges.component';
 import { SafePipe } from './pipes/safe-pipe';
 import { FormContingutComponent } from './components/form-contingut/form-contingut.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { FacturesComponent } from './components/factures/factures.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MissatgesComponent,
     SafePipe,
     FormContingutComponent,
+    FacturesComponent,
   ],
   imports: [
     BrowserModule,

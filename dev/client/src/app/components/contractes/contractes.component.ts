@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Contracte } from 'src/app/models/contracte';
 import { ContractesService } from 'src/app/services/contractes/contractes.service';
 
@@ -11,7 +12,7 @@ export class ContractesComponent implements OnInit {
   public contractes: Contracte[] = [];
   public preu: number[] = [];
 
-  constructor(private cont: ContractesService) {}
+  constructor(private cont: ContractesService, private router: Router) {}
 
   ngOnInit(): void {
     this.cont.getContractes().subscribe((value) => {
@@ -26,5 +27,9 @@ export class ContractesComponent implements OnInit {
         });
       }
     });
+  }
+
+  public veureFactures(idContracte: number, preu: number): void {
+    this.router.navigate(['/factures'], { queryParams: { idContracte, preu } });
   }
 }

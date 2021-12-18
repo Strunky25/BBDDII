@@ -1,10 +1,11 @@
 <app-header></app-header>
 <div class="container">
-  <h1>Categories favorites</h1>
+  <h1>Les teves categories favorites</h1>
   <mat-list class="list">
     <mat-list-item *ngFor="let categoria of categoriesFavorites">
       <mat-icon mat-list-icon>category</mat-icon>
-      <div mat-line>{{categoria}}</div>
+      <div mat-line>{{ categoria }}</div>
+      <mat-divider></mat-divider>
     </mat-list-item>
   </mat-list>
 </div>

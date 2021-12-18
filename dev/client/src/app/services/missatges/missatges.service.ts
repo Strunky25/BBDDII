@@ -12,14 +12,14 @@ export class MissatgesService {
 
   public getMissatges(): Observable<Missatge[]> {
     return this.http.get<Missatge[]>(
-      `/BD202/servidor/getRecomanacions.php?nomUsuari=${
+      `http://localhost/BD202/servidor/getRecomanacions.php?nomUsuari=${
         this.auth.getCurrentUser().nomUsuari
       }`
     );
   }
 
   public marcarLlegit(idMissatge: number): Observable<boolean> {
-    return this.http.post<boolean>('/BD202/servidor/updateMissatge.php', {
+    return this.http.post<boolean>('http://localhost/BD202/servidor/updateMissatge.php', {
       idMissatge,
     });
   }

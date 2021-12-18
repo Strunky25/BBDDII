@@ -21,7 +21,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   public registerUser(user: Usuari): Observable<boolean> {
-    return this.http.post<boolean>('/BD202/servidor/register.php', {
+    return this.http.post<boolean>('http://localhost/BD202/servidor/register.php', {
       nomUsuari: user.nomUsuari,
       contrassenya: user.contrassenya,
       nom: user.nom,
@@ -33,7 +33,7 @@ export class AuthService {
 
   public loginUser(nomUsuari: String, pass: String): Observable<any> {
     return this.http.get<any>(
-      `/BD202/servidor/login.php?nomUsuari=${nomUsuari}&contrassenya=${pass}`
+      `http://localhost/BD202/servidor/login.php?nomUsuari=${nomUsuari}&contrassenya=${pass}`
     );
   }
 

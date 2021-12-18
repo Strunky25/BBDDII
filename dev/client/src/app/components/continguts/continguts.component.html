@@ -1,3 +1,8 @@
-<app-header></app-header>
-<app-tab-bar *ngIf="hasContracte; else altaContracte"></app-tab-bar>
-<ng-template #altaContracte><app-alta-contracte></app-alta-contracte></ng-template>
+<app-header [nMissatges]="nMissatges"></app-header>
+<app-tab-bar
+  (nMissatges)="augmentarNMissatges($event)"
+  *ngIf="hasContracte; else altaContracte"
+></app-tab-bar>
+<ng-template #altaContracte
+  ><app-alta-contracte></app-alta-contracte
+></ng-template>

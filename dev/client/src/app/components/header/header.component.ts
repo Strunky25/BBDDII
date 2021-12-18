@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Contingut } from 'src/app/models/contingut';
@@ -13,7 +13,7 @@ import { FormContingutComponent } from '../form-contingut/form-contingut.compone
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  public nMissatges: number = 0;
+  @Input() nMissatges: number = 0;
   public isAdmin: boolean = false;
 
   constructor(

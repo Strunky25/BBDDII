@@ -1,0 +1,19 @@
+<app-header></app-header>
+<div class="container">
+  <h1>Les teves factures del contracte {{ idContracte }}</h1>
+  <mat-list class="list">
+    <mat-list-item *ngFor="let factura of factures; let i = index">
+      <mat-icon mat-list-icon>receipt</mat-icon>
+      <div mat-line>{{ factura.idFactura }} Import: {{ preu }}€</div>
+      <div mat-line>{{ factura.dataEmissio }}</div>
+      <button
+        mat-icon-button
+        color="primary"
+        (click)="marcarLlegit(factura.idFactura)"
+      >
+        <mat-icon>check</mat-icon>
+      </button>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+</div>

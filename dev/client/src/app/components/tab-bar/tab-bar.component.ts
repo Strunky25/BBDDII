@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Contingut } from 'src/app/models/contingut';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ContingutsService } from 'src/app/services/continguts/continguts.service';
+import { MissatgesService } from 'src/app/services/missatges/missatges.service';
 
 @Component({
   selector: 'app-tab-bar',
@@ -12,8 +13,13 @@ export class TabBarComponent implements OnInit {
   public contingutsVisualitzables: Contingut[] = [];
   public contingutsFavorits: Contingut[] = [];
   public contingutsCategoriesFavorites: Contingut[] = [];
+  @Output() nMissatges = new EventEmitter<number>();
 
-  constructor(private conts: ContingutsService, private auth: AuthService) {}
+  constructor(
+    private conts: ContingutsService,
+    private auth: AuthService,
+    private miss: MissatgesService
+  ) {}
 
   ngOnInit(): void {
     this.conts.obtenirCategoriesFavorites().subscribe((val) => {
@@ -41,5 +47,8 @@ export class TabBarComponent implements OnInit {
         this.contingutsCategoriesFavorites = val;
       }
     });
+    this.miss
+      .getMissatges()
+      .subscribe((val) => this.nMissatges.emit(val.length));
   }
 }
