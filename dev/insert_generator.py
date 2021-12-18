@@ -4,12 +4,13 @@ import random as rand
 import json
 import urllib.request
 import string
-# import api
+import api
 import datetime
 import hashlib
 from datetime import timedelta
 from dateutil.relativedelta import relativedelta
 import calendar
+
 
 INSERT = "INSERT INTO tabla (columnas) VALUES ;"
 NOMBRE_USUARIS = 300
@@ -99,7 +100,7 @@ def generar_contingut(file):
         videoUrl = "www.youtube.com/watch?v="+videoId
         title = (data['snippet']['title'])
         nomCategoria = rand.choice(CATEGORIES)
-        title=title.replace("\'","")
+        title.replace("'","")
         print(title)
         print(i)
         insert_contingut = insert_contingut.replace(";", f', (\'{title}\',\'{videoUrl}\',\'{nomCategoria}\');')
@@ -115,7 +116,7 @@ def generar_contingut(file):
 
 def generar_contracte(file):
     insert_contracte = INSERT.replace("tabla", "Contracte")
-    insert_contracte = insert_contracte.replace("columnas", "dataAlta, dataVenciment,nomUsuari, tipusContracte")
+    insert_contracte = insert_contracte.replace("columnas", "dataAlta, dataVenciment, nomUsuari, tipusContracte")
 
     for i in range(NOMBRE_USUARIS):
         time_between_dates = end_date - start_date
@@ -163,18 +164,18 @@ def generar_favorits(file):
     insert_R_Categoria_Favorita = insert_R_Categoria_Favorita.replace("VALUES ,", "VALUES")
 
     file.write(insert_R_Contingut_Favorit+ "\n")
-   # file.write(insert_R_Categoria_Favorita+ "\n")
+    file.write(insert_R_Categoria_Favorita+ "\n")
 
 
 def main():
-    with open('D:/OneDrive - Universitat de les Illes Balears/carrera/3ro/1er_cuatri/BBDD2/Practicas/Practica_2/BBDDII/dev/data/contractes.txt', "w", encoding="utf-8") as f:
+    with open('C:/Users/walli/Desktop/UIB/3/bd/BBDDII/dev/data/a.txt', "w", encoding="utf-8") as f:
         faker = Faker('es_ES')
         generar_constants(f)
         generar_usuaris(f, faker)
-        # generar_categoria(f)
-        # generar_contingut(f)
+        generar_categoria(f)
+        generar_contingut(f)
         generar_contracte(f)
-        # generar_favorits(f)
+        generar_favorits(f)
     pass
 
 
