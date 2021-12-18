@@ -1,0 +1,28 @@
+DELIMITER //
+CREATE TRIGGER creacioMissatge AFTER INSERT ON contingut
+FOR EACH ROW
+BEGIN
+    DECLARE id integer;
+	DECLARE finished INTEGER DEFAULT 0;
+    
+	DECLARE cursorAux CURSOR FOR SELECT idContracte
+	FROM r_categoria_favorita AS contractesCateFav
+	WHERE contractesCateFav.nomCategoria = NEW.nomCategoria;
+
+	DECLARE CONTINUE HANDLER 
+    FOR NOT FOUND SET finished = 1;
+
+	OPEN cursorAux;
+
+	enviarMissatge: LOOP
+		FETCH cursorAux INTO id;
+		IF finished =1 THEN
+			LEAVE enviarMissatge;
+		END IF;
+
+		INSERT INTO missatge(dataGeneració, idContracte, idContingut) 
+		VALUES (current_date, id, NEW.idContingut);
+
+	END LOOP enviarMissatge;
+	CLOSE cursorAux;
+END;
