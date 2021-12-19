@@ -30,6 +30,7 @@ import { ContingutsComponent } from './components/continguts/continguts.componen
 import { CategoriesFavoritesComponent } from './components/categories-favorites/categories-favorites.component';
 import { ContingutComponent } from './components/contingut/contingut.component';
 import { MatListModule } from '@angular/material/list';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MissatgesComponent } from './components/missatges/missatges.component';
 import { SafePipe } from './pipes/safe-pipe';
 import { FormContingutComponent } from './components/form-contingut/form-contingut.component';
@@ -64,6 +65,7 @@ import { FacturesComponent } from './components/factures/factures.component';
     MatFormFieldModule,
     MatSlideToggleModule,
     MatButtonModule,
+    MatSnackBarModule,
     HttpClientModule,
     FormsModule,
     MatToolbarModule,

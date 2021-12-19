@@ -13,13 +13,8 @@ export class TabBarComponent implements OnInit {
   public contingutsVisualitzables: Contingut[] = [];
   public contingutsFavorits: Contingut[] = [];
   public contingutsCategoriesFavorites: Contingut[] = [];
-  @Output() nMissatges = new EventEmitter<number>();
 
-  constructor(
-    private conts: ContingutsService,
-    private auth: AuthService,
-    private miss: MissatgesService
-  ) {}
+  constructor(private conts: ContingutsService, private auth: AuthService) {}
 
   ngOnInit(): void {
     this.conts.obtenirCategoriesFavorites().subscribe((val) => {
@@ -47,8 +42,5 @@ export class TabBarComponent implements OnInit {
         this.contingutsCategoriesFavorites = val;
       }
     });
-    this.miss
-      .getMissatges()
-      .subscribe((val) => this.nMissatges.emit(val.length));
   }
 }

@@ -8,7 +8,6 @@ import { ContractesService } from 'src/app/services/contractes/contractes.servic
 })
 export class ContingutsComponent implements OnInit {
   public hasContracte: boolean = false;
-  public nMissatges: number = 0;
 
   constructor(private contractes: ContractesService) {}
 
@@ -18,9 +17,5 @@ export class ContingutsComponent implements OnInit {
         this.hasContracte = true;
       }
     });
-  }
-
-  public augmentarNMissatges(val: number): void {
-    this.nMissatges = val;
   }
 }

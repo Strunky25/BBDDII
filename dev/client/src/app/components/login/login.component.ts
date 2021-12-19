@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Usuari } from 'src/app/models/usuari';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -8,13 +9,17 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
-  public nomUsuari: String = '';
-  public contrassenya: String = '';
+export class LoginComponent implements OnInit {
+  public nomUsuari: string = '';
+  public contrassenya: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private _snackBar: MatSnackBar
+  ) {}
 
-  loginUser(): void {
+  public loginUser(): void {
     this.authService
       .loginUser(this.nomUsuari, this.contrassenya)
       .subscribe((res) => {
@@ -30,8 +35,27 @@ export class LoginComponent {
             administrador: res[0].administrador == 1,
           };
           this.authService.setCurrentUser(usuari);
+          sessionStorage.setItem('usuari', JSON.stringify(usuari));
           this.router.navigate(['/continguts']);
+        } else {
+          this._snackBar.open(
+            'Error intentant iniciar sessió, intenta-ho una altra vegada',
+            "D'acord",
+            {
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+            }
+          );
         }
       });
+  }
+
+  ngOnInit(): void {
+    const usuari: string | null = sessionStorage.getItem('usuari');
+    if (usuari) {
+      this.authService.setCurrentUser(JSON.parse(usuari));
+      console.log(JSON.parse(usuari));
+      this.router.navigate(['/continguts']);
+    }
   }
 }

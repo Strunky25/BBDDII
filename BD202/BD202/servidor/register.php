@@ -1,5 +1,6 @@
 <?php
 header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
 $jsonData = json_decode(file_get_contents("php://input"));
 if (!$jsonData) {
     exit("No hi ha dades");

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Usuari } from 'src/app/models/usuari';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -17,7 +18,11 @@ export class RegisterComponent {
   public administrador: boolean = false;
   public readonly tipus: string[] = ['Infantil', 'Adolescent', 'Adult'];
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private _snackBar: MatSnackBar
+  ) {}
 
   registerUser(): void {
     this.authService
@@ -34,6 +39,15 @@ export class RegisterComponent {
       .subscribe((val) => {
         if (val) {
           this.router.navigate(['']);
+        } else {
+          this._snackBar.open(
+            "Error intentant enregistrar l'usuari, intenta-ho una altra vegada",
+            "D'acord",
+            {
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+            }
+          );
         }
       });
   }
