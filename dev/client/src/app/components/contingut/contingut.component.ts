@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Contingut } from 'src/app/models/contingut';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -26,7 +27,8 @@ export class ContingutComponent implements OnInit {
     private route: ActivatedRoute,
     private auth: AuthService,
     private conts: ContingutsService,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -59,6 +61,16 @@ export class ContingutComponent implements OnInit {
       .subscribe((res) => {
         if (res) {
           this.contFav = false;
+        } else {
+          this._snackBar.open(
+            'Error llevant el contingut de favorits, intenta-ho una altra vegada',
+            "D'acord",
+            {
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              duration: 5000,
+            }
+          );
         }
       });
   }
@@ -69,6 +81,16 @@ export class ContingutComponent implements OnInit {
       .subscribe((res) => {
         if (res) {
           this.contFav = true;
+        } else {
+          this._snackBar.open(
+            'Error afegint el contingut a favorits, intenta-ho una altra vegada',
+            "D'acord",
+            {
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              duration: 5000,
+            }
+          );
         }
       });
   }
@@ -79,6 +101,16 @@ export class ContingutComponent implements OnInit {
       .subscribe((res) => {
         if (res) {
           this.catFav = false;
+        } else {
+          this._snackBar.open(
+            'Error llevant la categoria de favorits, intenta-ho una altra vegada',
+            "D'acord",
+            {
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              duration: 5000,
+            }
+          );
         }
       });
   }
@@ -89,13 +121,31 @@ export class ContingutComponent implements OnInit {
       .subscribe((res) => {
         if (res) {
           this.catFav = true;
+        } else {
+          this._snackBar.open(
+            'Error afegint la categoria a favorits, intenta-ho una altra vegada',
+            "D'acord",
+            {
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              duration: 5000,
+            }
+          );
         }
       });
   }
 
   public deleteContingut(): void {
     this.conts.llevarContingut(this.contingut.idContingut!).subscribe((res) => {
-      if (res) this.router.navigate(['/continguts']);
+      if (res) {
+        this.router.navigate(['/continguts']);
+      } else {
+        this._snackBar.open(
+          'Error eliminant el contingut, intenta-ho una altra vegada',
+          "D'acord",
+          { horizontalPosition: 'end', verticalPosition: 'top', duration: 5000 }
+        );
+      }
     });
   }
 }

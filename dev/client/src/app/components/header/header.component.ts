@@ -6,6 +6,7 @@ import { ContingutsService } from 'src/app/services/continguts/continguts.servic
 import { MissatgesService } from 'src/app/services/missatges/missatges.service';
 import { FormContingutComponent } from '../form-contingut/form-contingut.component';
 import { share } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,8 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     private continguts: ContingutsService,
-    private miss: MissatgesService
+    private miss: MissatgesService,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +49,16 @@ export class HeaderComponent implements OnInit {
       this.continguts.afegirContingut(val).subscribe((res) => {
         if (res) {
           this.router.navigate(['/continguts']);
+        } else {
+          this._snackBar.open(
+            'Error creant el contingut, intenta-ho una altra vegada',
+            "D'acord",
+            {
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              duration: 5000,
+            }
+          );
         }
       });
     });
