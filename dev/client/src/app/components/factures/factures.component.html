@@ -2,6 +2,9 @@
 <div class="container">
   <h1>Les teves factures del contracte {{ idContracte }}</h1>
   <mat-list class="list">
+    <mat-list-item *ngIf="factures.length === 0">
+      <div mat-line>Encara no tens cap factura</div>
+    </mat-list-item>
     <mat-list-item *ngFor="let factura of factures; let i = index">
       <mat-icon mat-list-icon>receipt</mat-icon>
       <div mat-line>{{ factura.idFactura }} Import: {{ preu }}€</div>

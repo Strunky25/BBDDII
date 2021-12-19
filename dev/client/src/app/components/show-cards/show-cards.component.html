@@ -1,4 +1,7 @@
 <div class="container">
+  <span *ngIf="continguts.length === 0"
+    >No hi ha cap contingut per mostrar aquí</span
+  >
   <div
     class="card"
     *ngFor="let contingut of continguts"
