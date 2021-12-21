@@ -8,8 +8,8 @@ $nomUsuari = $_GET["nomUsuari"];
 
 $conexio = mysqli_connect("localhost", "root", "") or die("Error conectant amb el servidor");
 $bd = mysqli_select_db($conexio, "bd202") or die("Error conectant amb la base de dades");
-$consulta = "SELECT nomCategoria FROM contracte 
-            JOIN r_categoria_favorita ON contracte.nomUsuari='$nomUsuari'
+$consulta = "SELECT nomCategoria FROM r_categoria_favorita
+            JOIN contracte ON contracte.nomUsuari='$nomUsuari'
             AND R_categoria_favorita.idContracte=contracte.idContracte";
 
 $result = mysqli_query($conexio, $consulta);
