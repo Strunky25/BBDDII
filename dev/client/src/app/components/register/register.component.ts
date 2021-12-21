@@ -36,19 +36,32 @@ export class RegisterComponent {
         categoriesFavorites: [],
         administrador: this.administrador,
       })
-      .subscribe((val) => {
-        if (val) {
-          this.router.navigate(['']);
-        } else {
+      .subscribe(
+        (val) => {
+          if (val) {
+            this.router.navigate(['']);
+          } else {
+            this._snackBar.open(
+              "Error intentant enregistrar l'usuari, intenta-ho una altra vegada",
+              "D'acord",
+              {
+                horizontalPosition: 'end',
+                verticalPosition: 'top',
+                duration: 5000,
+              }
+            );
+          }
+        },
+        () =>
           this._snackBar.open(
             "Error intentant enregistrar l'usuari, intenta-ho una altra vegada",
             "D'acord",
             {
-              horizontalPosition: 'end',
               verticalPosition: 'top',
+              horizontalPosition: 'end',
+              duration: 5000,
             }
-          );
-        }
-      });
+          )
+      );
   }
 }
