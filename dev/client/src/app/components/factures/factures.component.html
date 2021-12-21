@@ -7,7 +7,7 @@
     </mat-list-item>
     <mat-list-item *ngFor="let factura of factures; let i = index">
       <mat-icon mat-list-icon>receipt</mat-icon>
-      <div mat-line>{{ factura.idFactura }} Import: {{ preu }}€</div>
+      <div mat-line>ID: {{ factura.idFactura }} Import: {{ preu }}€</div>
       <div mat-line>{{ factura.dataEmissio }}</div>
       <button
         mat-icon-button

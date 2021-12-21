@@ -20,9 +20,8 @@ export class LoginComponent implements OnInit {
   ) {}
 
   public loginUser(): void {
-    this.authService
-      .loginUser(this.nomUsuari, this.contrassenya)
-      .subscribe((res) => {
+    this.authService.loginUser(this.nomUsuari, this.contrassenya).subscribe(
+      (res) => {
         if (res) {
           const usuari: Usuari = {
             nom: res[0].nom,
@@ -44,10 +43,22 @@ export class LoginComponent implements OnInit {
             {
               horizontalPosition: 'end',
               verticalPosition: 'top',
+              duration: 5000,
             }
           );
         }
-      });
+      },
+      () =>
+        this._snackBar.open(
+          'Error intentant iniciar sessió, intenta-ho una altra vegada',
+          "D'acord",
+          {
+            verticalPosition: 'top',
+            horizontalPosition: 'end',
+            duration: 5000,
+          }
+        )
+    );
   }
 
   ngOnInit(): void {
