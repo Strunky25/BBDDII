@@ -22,10 +22,23 @@ export class AltaContracteComponent {
     const ref = this.dialog.open(FormContracteComponent);
 
     ref.afterClosed().subscribe((val: string) => {
-      this.contractes.createContracte(val).subscribe((res) => {
-        if (res) {
-          this.router.navigate(['/contractes']);
-        } else {
+      this.contractes.createContracte(val).subscribe(
+        (res) => {
+          if (res) {
+            this.router.navigate(['/contractes']);
+          } else {
+            this._snackBar.open(
+              'Error creant el contracte, intenta-ho una altra vegada',
+              "D'acord",
+              {
+                verticalPosition: 'top',
+                horizontalPosition: 'end',
+                duration: 5000,
+              }
+            );
+          }
+        },
+        () =>
           this._snackBar.open(
             'Error creant el contracte, intenta-ho una altra vegada',
             "D'acord",
@@ -34,9 +47,8 @@ export class AltaContracteComponent {
               horizontalPosition: 'end',
               duration: 5000,
             }
-          );
-        }
-      });
+          )
+      );
     });
   }
 }

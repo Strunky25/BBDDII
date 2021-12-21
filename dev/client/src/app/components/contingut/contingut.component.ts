@@ -116,9 +116,8 @@ export class ContingutComponent implements OnInit {
   }
 
   private addCatFav(): void {
-    this.conts
-      .afegirCategoriaFavorita(this.contingut.nomCategoria)
-      .subscribe((res) => {
+    this.conts.afegirCategoriaFavorita(this.contingut.nomCategoria).subscribe(
+      (res) => {
         if (res) {
           this.catFav = true;
         } else {
@@ -132,20 +131,47 @@ export class ContingutComponent implements OnInit {
             }
           );
         }
-      });
+      },
+      () =>
+        this._snackBar.open(
+          'Error afegint la categoria a favorits, intenta-ho una altra vegada',
+          "D'acord",
+          {
+            verticalPosition: 'top',
+            horizontalPosition: 'end',
+            duration: 5000,
+          }
+        )
+    );
   }
 
   public deleteContingut(): void {
-    this.conts.llevarContingut(this.contingut.idContingut!).subscribe((res) => {
-      if (res) {
-        this.router.navigate(['/continguts']);
-      } else {
+    this.conts.llevarContingut(this.contingut.idContingut!).subscribe(
+      (res) => {
+        if (res) {
+          this.router.navigate(['/continguts']);
+        } else {
+          this._snackBar.open(
+            'Error eliminant el contingut, intenta-ho una altra vegada',
+            "D'acord",
+            {
+              horizontalPosition: 'end',
+              verticalPosition: 'top',
+              duration: 5000,
+            }
+          );
+        }
+      },
+      () =>
         this._snackBar.open(
           'Error eliminant el contingut, intenta-ho una altra vegada',
           "D'acord",
-          { horizontalPosition: 'end', verticalPosition: 'top', duration: 5000 }
-        );
-      }
-    });
+          {
+            verticalPosition: 'top',
+            horizontalPosition: 'end',
+            duration: 5000,
+          }
+        )
+    );
   }
 }
